@@ -4,15 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FuelFinderMX - Registro de errores</title>
+    <title>FuelFinderMX - Crear Cuenta</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 </head>
-<!--Estilo en css personalizado-->
-<style>
-    .bg-custom {
-        background-color: #dadada;
-    }
-</style>
 
 <body>
 
@@ -21,7 +15,7 @@
         <a class="navbar-brand" href="#">FuelFinderMX</a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" style="color: rgb(0, 0, 0);"href="Inicio.html">Inicio</a>
+                <a class="nav-link" style="color: rgb(0, 0, 0);" href="Inicio.html">Inicio</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" style="color: rgb(0, 0, 0);" href="Mapa.html">Mapa</a>
@@ -38,12 +32,12 @@
         </ul>
     </nav>
 
-    <div class="mt-4">
+    <!--Formulario para registrar la informacion de cuenta-->
+    <div class="container mt-5">
         <div class="row justify-content-center">
-            <!-- Columna para el formulario de error-->
-            <div class="col-md-5 bg-custom p-5 rounded">
-                <h2 class="text-center">Registro de errores</h2>
-                <!--Formulario de error-->
+            <div class="col-md-6">
+                <h2 class="text-center">Modificar datos personales</h2>
+                <br>
                 <form>
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
@@ -58,24 +52,52 @@
                         <input type="email" class="form-control" id="email" placeholder="Ingrese su correo electrónico">
                     </div>
                     <div class="form-group">
-                        <label for="telefono">Número de teléfono</label>
-                        <input type="tel" class="form-control" id="telefono"
-                            placeholder="Ingrese su número de teléfono">
+                        <label for="contraseña">Contraseña</label>
+                        <input type="password" class="form-control" id="contraseña" placeholder="Ingrese su contraseña">
                     </div>
                     <div class="form-group">
-                        <label for="error">Descripción del error</label>
-                        <textarea class="form-control" id="error" rows="5"
-                            placeholder="Ingrese una descripción del error"></textarea>
+                        <label for="confirmar_contraseña">Confirmar contraseña</label>
+                        <input type="password" class="form-control" id="confirmar_contraseña"
+                            placeholder="Confirme su contraseña">
                     </div>
-                    <button type="submit" class="btn btn-dark btn-block">Continuar</button>
                 </form>
             </div>
-            <!-- Columna para el ícono-->
-            <div class="col-md-4 d-flex align-items-center justify-content-center flex-column">
-                <i class="fas fa-exclamation-triangle fa-5x text-warning"></i> <!-- Ejemplo de ícono -->
-                <img src="Signo-de-exclamacion.svg.svg" class="w-50" alt="Imagen al 50%">
-            </div>
         </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center">Modificar datos del vehículo</h2>
+                <form>
+                    <br>
+                    <div class="form-group">
+                        <label for="nombre">Marca</label>
+                        <input type="text" class="form-control" id="nombre"
+                            placeholder="Ingrese la marca de su vehiculo">
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Modelo</label>
+                        <input type="text" class="form-control" id="nombre"
+                            placeholder="Ingrese el modelo de su vehiculo">
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Año</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Ingrese el año de su vehiculo">
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Capacidad del tanque</label>
+                        <input type="text" class="form-control" id="nombre"
+                            placeholder="Ingrese la capacidad del tanque de su vehiculo">
+                    </div>
+                    <a href="Perfil.html" class="btn btn-primary btn-block">Aceptar</a>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+    </div>
     </div>
 
     <!--Footer de informacion de contacto-->
