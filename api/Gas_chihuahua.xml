@@ -1,0 +1,266 @@
+<gasolineras>
+    <gasolinera>
+        <nombre>COMBUSTIBLES Y LUBRICANTES ATENAS SA DE CV</nombre>
+        <id>PL/795/EXP/ES/2015</id>
+        <latitud>28.73367</latitud>
+        <longitud>-106.1008</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>PETROMAX, S.A. DE C.V.</nombre>
+        <id>PL/490/EXP/ES/2015</id>
+        <latitud>28.65146</latitud>
+        <longitud>-106.0694</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>PETROMAX, S.A. DE C.V.</nombre>
+        <id>PL/478/EXP/ES/2015</id>
+        <latitud>28.68869</latitud>
+        <longitud>-106.1335</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>PETROMAX, S.A. DE C.V.</nombre>
+        <id>PL/480/EXP/ES/2015</id>
+        <latitud>28.70224</latitud>
+        <longitud>-106.1422</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>COMBUSTIBLES Y LUBRICANTES ATENAS SA DE CV</nombre>
+        <id>PL/789/EXP/ES/2015</id>
+        <latitud>28.72977</latitud>
+        <longitud>-106.0961</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>PETROMAX, S.A. DE C.V.</nombre>
+        <id>PL/524/EXP/ES/2015</id>
+        <latitud>28.66151</latitud>
+        <longitud>-106.0861</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>CORPORATIVO ARPE SA DE CV</nombre>
+        <id>PL/778/EXP/ES/2015</id>
+        <latitud>28.71699</latitud>
+        <longitud>-106.1502</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>CORPORATIVO ARPE SA DE CV</nombre>
+        <id>PL/785/EXP/ES/2015</id>
+        <latitud>28.60305</latitud>
+        <longitud>-106.1215</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>PETROMAX, S.A. DE C.V.</nombre>
+        <id>PL/572/EXP/ES/2015</id>
+        <latitud>28.62766</latitud>
+        <longitud>-106.1183</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>OPERADORA LOS NOGALES SA DE CV</nombre>
+        <id>PL/1362/EXP/ES/2015</id>
+        <latitud>28.73301</latitud>
+        <longitud>-106.1143</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>AUTOSERVICIO CASANTO SA DE CV</nombre>
+        <id>PL/979/EXP/ES/2015</id>
+        <latitud>28.62542</latitud>
+        <longitud>-105.9708</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>COMBUSTIBLES TRICENTENARIO SA DE CV</nombre>
+        <id>PL/1292/EXP/ES/2015</id>
+        <latitud>28.6024</latitud>
+        <longitud>-106.1029</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.</nombre>
+        <id>PL/993/EXP/ES/2015</id>
+        <latitud>28.61197</latitud>
+        <longitud>-106.0918</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>PETROMAX, S.A. DE C.V.</nombre>
+        <id>PL/1291/EXP/ES/2015</id>
+        <latitud>28.74398</latitud>
+        <longitud>-106.1339</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>PETROMAX, S.A. DE C.V.</nombre>
+        <id>PL/1286/EXP/ES/2015</id>
+        <latitud>28.67927</latitud>
+        <longitud>-106.089</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>RAPIGAS DEL CENTRO SA DE CV</nombre>
+        <id>PL/1718/EXP/ES/2015</id>
+        <latitud>28.63337</latitud>
+        <longitud>-106.0764</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>PETROMAX, S.A. DE C.V.</nombre>
+        <id>PL/1661/EXP/ES/2015</id>
+        <latitud>28.62343</latitud>
+        <longitud>-106.0295</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>PETROMAX, S.A. DE C.V.</nombre>
+        <id>PL/1722/EXP/ES/2015</id>
+        <latitud>28.60008</latitud>
+        <longitud>-106.1024</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>SERVICIO AMERICAS SA DE CV</nombre>
+        <id>PL/1720/EXP/ES/2015</id>
+        <latitud>28.65872</latitud>
+        <longitud>-106.1029</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>PETROMAX, S.A. DE C.V.</nombre>
+        <id>PL/1672/EXP/ES/2015</id>
+        <latitud>28.63609</latitud>
+        <longitud>-106.0852</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>INVERSORA SAN FELIPE SA DE CV</nombre>
+        <id>PL/2536/EXP/ES/2015</id>
+        <latitud>28.64767</latitud>
+        <longitud>-106.0827</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>COMBUSTIBLES ALDAMA SA DE CV</nombre>
+        <id>PL/2455/EXP/ES/2015</id>
+        <latitud>28.83702</latitud>
+        <longitud>-105.9029</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>MER DE CHIHUAHUA, S.A. DE C.V.</nombre>
+        <id>PL/2304/EXP/ES/2015</id>
+        <latitud>28.61294</latitud>
+        <longitud>-106.1072</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.</nombre>
+        <id>PL/2675/EXP/ES/2015</id>
+        <latitud>28.65467</latitud>
+        <longitud>-106.1309</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.</nombre>
+        <id>PL/2676/EXP/ES/2015</id>
+        <latitud>28.65657</latitud>
+        <longitud>-106.1084</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>GUAMCO SA DE CV</nombre>
+        <id>PL/2664/EXP/ES/2015</id>
+        <latitud>28.61019</latitud>
+        <longitud>-106.0648</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.</nombre>
+        <id>PL/2665/EXP/ES/2015</id>
+        <latitud>28.63023</latitud>
+        <longitud>-106.0217</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.</nombre>
+        <id>PL/2599/EXP/ES/2015</id>
+        <latitud>28.6217</latitud>
+        <longitud>-106.0297</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>GUAMCO SA DE CV</nombre>
+        <id>PL/2598/EXP/ES/2015</id>
+        <latitud>28.63861</latitud>
+        <longitud>-106.0306</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>GUAMCO SA DE CV</nombre>
+        <id>PL/2596/EXP/ES/2015</id>
+        <latitud>28.62577</latitud>
+        <longitud>-106.0448</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>GASOLINERAS DE LA FRONTERA S.A. DE C.V.</nombre>
+        <id>PL/2551/EXP/ES/2015</id>
+        <latitud>28.6889</latitud>
+        <longitud>-106.0311</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>INSTITUTO DE ACCESIBILIDAD Y MOVILIDAD S.A. DE C.V.</nombre>
+        <id>PL/2585/EXP/ES/2015</id>
+        <latitud>28.68399</latitud>
+        <longitud>-106.0788</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>AGUILA ENERGIA S.A. DE C.V.</nombre>
+        <id>PL/2388/EXP/ES/2015</id>
+        <latitud>28.67431</latitud>
+        <longitud>-106.0344</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>GRUPO MUÑOZ MENDOZA S.A. DE C.V.</nombre>
+        <id>PL/3822/EXP/ES/2015</id>
+        <latitud>28.65865</latitud>
+        <longitud>-106.0753</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>INSTITUTO DE ACCESIBILIDAD Y MOVILIDAD S.A. DE C.V.</nombre>
+        <id>PL/3713/EXP/ES/2015</id>
+        <latitud>28.68398</latitud>
+        <longitud>-106.0774</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>GRUPO MUÑOZ MENDOZA S.A. DE C.V.</nombre>
+        <id>PL/3821/EXP/ES/2015</id>
+        <latitud>28.66287</latitud>
+        <longitud>-106.0735</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>SUPER GASOLINERAS DE LA FRONTERA S.A. DE C.V.</nombre>
+        <id>PL/3356/EXP/ES/2015</id>
+        <latitud>28.59672</latitud>
+        <longitud>-106.0305</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>SERVICIO AMERICAS SA DE CV</nombre>
+        <id>PL/5465/EXP/ES/2015</id>
+        <latitud>28.73169</latitud>
+        <longitud>-106.0955</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>GRUPO MUÑOZ MENDOZA S.A. DE C.V.</nombre>
+        <id>PL/3820/EXP/ES/2015</id>
+        <latitud>28.66627</latitud>
+        <longitud>-106.0865</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>GASNATUR SA DE CV</nombre>
+        <id>PL/4024/EXP/ES/2015</id>
+        <latitud>28.61714</latitud>
+        <longitud>-106.1099</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>GASNATUR SA DE CV</nombre>
+        <id>PL/4025/EXP/ES/2015</id>
+        <latitud>28.6173</latitud>
+        <longitud>-106.1102</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>GASNATUR SA DE CV</nombre>
+        <id>PL/4023/EXP/ES/2015</id>
+        <latitud>28.61747</latitud>
+        <longitud>-106.1112</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>GASNATUR SA DE CV</nombre>
+        <id>PL/4022/EXP/ES/2015</id>
+        <latitud>28.61768</latitud>
+        <longitud>-106.1105</longitud>
+    </gasolinera>
+    <gasolinera>
+        <nombre>GASNATUR SA DE CV</nombre>
+        <id>PL/4021/EXP/ES/2015</id>
+        <latitud>28.61778</latitud>
+        <longitud>-106.1108</longitud>
+    </gasolinera>
+</gasolineras>

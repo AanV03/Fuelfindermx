@@ -60,19 +60,19 @@
         <a class="navbar-brand" href="#">FuelFinderMX</a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="Inicio.html">Inicio</a>
+                <a class="nav-link" style="color: rgb(0, 0, 0);"href="Inicio.html">Inicio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="Mapa.html">Mapa</a>
+                <a class="nav-link" style="color: rgb(0, 0, 0);" href="Mapa.html">Mapa</a>
+            </li>
+            <li class="nav-item"></li>
+            <a class="nav-link" style="color: rgb(0, 0, 0);" href="Gasolineras.html">Precios</a>
+            </li>
+            <li class="nav-item"></li>
+            <a class="nav-link" style="color: rgb(0, 0, 0);" href="Perfil.html">Perfil</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="Gasolineras.html">Precios</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Perfil.html">Perfil</a>
-            </li>
-            <li class="nav-item">
-                <a class="btn btn-dark" href="IniciarSesion.html">Iniciar sesión</a>
+                <a class="nav-link" style="color: rgb(0, 0, 0);" href="IniciarSesion.html">Iniciar sesion</a>
             </li>
         </ul>
     </nav>
@@ -100,10 +100,70 @@
                     async defer></script>
                 <script>
                     function initMap() {
-                        var map = new google.maps.Map(document.getElementById('map'), {
-                            center: { lat: 28.63528, lng: -106.08889 },
-                            zoom: 13
-                        });
+                        var centro = {lat: 28.6757, lng: -106.1008}; // Coordenadas aproximadas en el centro del área
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10,
+            center: centro
+        });
+
+        // Array de gasolineras con sus coordenadas
+        var gasolineras = [
+            { nombre: "COMBUSTIBLES Y LUBRICANTES ATENAS SA DE CV", lat: 28.73367, lng: -106.1008 },
+            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.65146, lng: -106.0694 },
+            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.68869, lng: -106.1335 },
+            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.70224, lng: -106.1422 },
+            { nombre: "COMBUSTIBLES Y LUBRICANTES ATENAS SA DE CV", lat: 28.72977, lng: -106.0961 },
+            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.66151, lng: -106.0861 },
+            { nombre: "CORPORATIVO ARPE SA DE CV", lat: 28.71699, lng: -106.1502 },
+            { nombre: "CORPORATIVO ARPE SA DE CV", lat: 28.60305, lng: -106.1215 },
+            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.62766, lng: -106.1183 },
+            { nombre: "OPERADORA LOS NOGALES SA DE CV", lat: 28.73301, lng: -106.1143 },
+            { nombre: "AUTOSERVICIO CASANTO SA DE CV", lat: 28.62542, lng: -105.9708 },
+            { nombre: "COMBUSTIBLES TRICENTENARIO SA DE CV", lat: 28.6024, lng: -106.1029 },
+            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.61197, lng: -106.0918 },
+            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.74398, lng: -106.1339 },
+            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.67927, lng: -106.089 },
+            { nombre: "RAPIGAS DEL CENTRO SA DE CV", lat: 28.63337, lng: -106.0764 },
+            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.62343, lng: -106.0295 },
+            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.60008, lng: -106.1024 },
+            { nombre: "SERVICIO AMERICAS SA DE CV", lat: 28.65872, lng: -106.1029 },
+            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.63609, lng: -106.0852 },
+            { nombre: "INVERSORA SAN FELIPE SA DE CV", lat: 28.64767, lng: -106.0827 },
+            { nombre: "COMBUSTIBLES ALDAMA SA DE CV", lat: 28.83702, lng: -105.9029 },
+            { nombre: "MER DE CHIHUAHUA, S.A. DE C.V.", lat: 28.61294, lng: -106.1072 },
+            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.65467, lng: -106.1309 },
+            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.65657, lng: -106.1084 },
+            { nombre: "GUAMCO SA DE CV", lat: 28.61019, lng: -106.0648 },
+            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.63023, lng: -106.0217 },
+            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.6217, lng: -106.0297 },
+            { nombre: "GUAMCO SA DE CV", lat: 28.63861, lng: -106.0306 },
+            { nombre: "GUAMCO SA DE CV", lat: 28.62577, lng: -106.0448 },
+            { nombre: "GASOLINERAS DE LA FRONTERA S.A. DE C.V.", lat: 28.6889, lng: -106.0311 },
+            { nombre: "INSTITUTO DE ACCESIBILIDAD Y MOVILIDAD S.A. DE C.V.", lat: 28.68399, lng: -106.0788 },
+            { nombre: "AGUILA ENERGIA S.A. DE C.V.", lat: 28.67431, lng: -106.0344 },
+            { nombre: "GRUPO MUÑOZ MENDOZA S.A. DE C.V.", lat: 28.65865, lng: -106.0753 },
+            { nombre: "INSTITUTO DE ACCESIBILIDAD Y MOVILIDAD S.A. DE C.V.", lat: 28.68398, lng: -106.0774 },
+            { nombre: "GRUPO MUÑOZ MENDOZA S.A. DE C.V.", lat: 28.66287, lng: -106.0735 },
+            { nombre: "SUPER GASOLINERAS DE LA FRONTERA S.A. DE C.V.", lat: 28.59672, lng: -106.0305 },
+            { nombre: "SERVICIO AMERICAS SA DE CV", lat: 28.73169, lng: -106.0955 },
+            { nombre: "GRUPO MUÑOZ MENDOZA S.A. DE C.V.", lat: 28.66627, lng: -106.0865 },
+            { nombre: "GASNATUR SA DE CV", lat: 28.61714, lng: -106.1099 },
+            { nombre: "GASNATUR SA DE CV", lat: 28.6173, lng: -106.1102 },
+            { nombre: "GASNATUR SA DE CV", lat: 28.61747, lng: -106.1112 },
+            { nombre: "GASNATUR SA DE CV", lat: 28.61768, lng: -106.1105 },
+            { nombre: "GASNATUR SA DE CV", lat: 28.61778, lng: -106.1108 },
+        ];
+
+        // Crear marcadores para cada gasolinera
+        gasolineras.forEach(function(gasolineras) {
+            var marker = new google.maps.Marker({
+                position: { lat: gasolineras.lat, lng: gasolineras.lng },
+                map: map,
+                title: gasolineras.nombre
+            });
+        });
+                        ;
                     }
                 </script>
             </div>
