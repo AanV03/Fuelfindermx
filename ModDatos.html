@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FuelFinderMX - Perfil de usuario</title>
+    <title>FuelFinderMX - Crear Cuenta</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 </head>
 
@@ -32,54 +32,72 @@
         </ul>
     </nav>
 
-    <!--Area de informacion del usuario-->
+    <!--Formulario para registrar la informacion de cuenta-->
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="row bg-light">
-                    <div class="col-md-6">
-                        <h2 class="text-center">Perfil de usuario</h2>
+                <h2 class="text-center">Modificar datos personales</h2>
+                <br>
+                <form>
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre">
                     </div>
-                    <div class="col-md-6">
-                        <a href="ModDatos.html" class="btn btn-primary float-right">Modificar datos</a>
+                    <div class="form-group">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" class="form-control" id="apellido" placeholder="Ingrese su apellido">
                     </div>
-                </div>
-                <div class="row mt-5">
-                    <div class="col-md-6">
-                        <h5>Datos de usuario</h5>
-                        <p>Nombre: Juan Pérez</p>
-                        <p>Apellido: García</p>
-                        <p>Correo electrónico: juan.perez@example.com</p>
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" class="form-control" id="email" placeholder="Ingrese su correo electrónico">
                     </div>
-                    <div class="col-md-6">
-                        <h5>Datos de cuenta</h5>
-                        <p>Contraseña: ********</p>
-                        <p>Fecha de creación: 2023-02-20</p>
+                    <div class="form-group">
+                        <label for="contraseña">Contraseña</label>
+                        <input type="password" class="form-control" id="contraseña" placeholder="Ingrese su contraseña">
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="confirmar_contraseña">Confirmar contraseña</label>
+                        <input type="password" class="form-control" id="confirmar_contraseña"
+                            placeholder="Confirme su contraseña">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
-    <!--Area de informacion del Vehiculo-->
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <h2 class="text-center">Datos del vehículo</h2>
-                <div class="row mt-5">
-                    <div class="col-md-4">
-                        <img src="Vehiculo.png" class="w-100 h-100" alt="Vehículo">
+                <h2 class="text-center">Modificar datos del vehículo</h2>
+                <form>
+                    <br>
+                    <div class="form-group">
+                        <label for="nombre">Marca</label>
+                        <input type="text" class="form-control" id="nombre"
+                            placeholder="Ingrese la marca de su vehiculo">
                     </div>
-                    <div class="col-md-8">
-                        <h5>Datos del vehículo</h5>
-                        <p>Marca: Toyota</p>
-                        <p>Modelo: Corolla</p>
-                        <p>Año: 2015</p>
-                        <p>Capacidad del Tanque: 35L</p>
+                    <div class="form-group">
+                        <label for="nombre">Modelo</label>
+                        <input type="text" class="form-control" id="nombre"
+                            placeholder="Ingrese el modelo de su vehiculo">
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="nombre">Año</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Ingrese el año de su vehiculo">
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Capacidad del tanque</label>
+                        <input type="text" class="form-control" id="nombre"
+                            placeholder="Ingrese la capacidad del tanque de su vehiculo">
+                    </div>
+                    <a href="Perfil.html" class="btn btn-primary btn-block">Aceptar</a>
+
+                </form>
             </div>
+
         </div>
+    </div>
+    </div>
     </div>
 
     <!--Footer de informacion de contacto-->
