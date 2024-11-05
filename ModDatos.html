@@ -34,8 +34,9 @@
 
     <!--Formulario para registrar la informacion de cuenta-->
     <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
+        <div class="row">
+            <!-- Columna 1: Datos personales -->
+            <div class="col-md-5 offset-md-1">
                 <h2 class="text-center">Modificar datos personales</h2>
                 <br>
                 <form>
@@ -62,43 +63,41 @@
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
-
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
+    
+            <!-- Columna 2: Datos del vehículo -->
+            <div class="col-md-5">
                 <h2 class="text-center">Modificar datos del vehículo</h2>
+                <br>
                 <form>
-                    <br>
                     <div class="form-group">
-                        <label for="nombre">Marca</label>
-                        <input type="text" class="form-control" id="nombre"
-                            placeholder="Ingrese la marca de su vehiculo">
+                        <label for="marca">Marca</label>
+                        <input type="text" class="form-control" id="marca" placeholder="Ingrese la marca de su vehiculo">
                     </div>
                     <div class="form-group">
-                        <label for="nombre">Modelo</label>
-                        <input type="text" class="form-control" id="nombre"
-                            placeholder="Ingrese el modelo de su vehiculo">
+                        <label for="modelo">Modelo</label>
+                        <input type="text" class="form-control" id="modelo" placeholder="Ingrese el modelo de su vehiculo">
                     </div>
                     <div class="form-group">
-                        <label for="nombre">Año</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Ingrese el año de su vehiculo">
+                        <label for="año">Año</label>
+                        <input type="text" class="form-control" id="año" placeholder="Ingrese el año de su vehiculo">
                     </div>
                     <div class="form-group">
-                        <label for="nombre">Capacidad del tanque</label>
-                        <input type="text" class="form-control" id="nombre"
+                        <label for="capacidad_tanque">Capacidad del tanque</label>
+                        <input type="text" class="form-control" id="capacidad_tanque"
                             placeholder="Ingrese la capacidad del tanque de su vehiculo">
                     </div>
-                    <a href="Perfil.html" class="btn btn-primary btn-block">Aceptar</a>
-
                 </form>
             </div>
-
+        </div>
+    
+        <!-- Botón centrado debajo de los formularios -->
+        <div class="row mt-4">
+            <div class="col text-center">
+                <a href="Perfil.html" class="btn btn-primary" style="width: 200px;">Guardar</a>
+            </div>
         </div>
     </div>
-    </div>
-    </div>
+    
 
     <!--Footer de informacion de contacto-->
     <footer class="footer mt-5 bg-light pt-4">
