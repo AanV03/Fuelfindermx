@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FuelFinderMX - Mapa</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!--Estilo en css personalizado-->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            height: 100vh;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .shadow-navbar {
+            box-shadow: 0px 12px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 10px;
+        }
+
+        .container-fluid,
+        .row,
+        .col-9 {
+            padding: 0;
+            margin: 0;
+        }
+
+
+        .footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .menu-section {
+            height: 100vh;
+            background-color: white;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .map-section {
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--Barra de navegacion principal-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-navbar">
+        <a class="navbar-brand" href="#">FuelFinderMX</a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="Inicio.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Mapa.html">Mapa</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Gasolineras.html">Precios</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Perfil.html">Perfil</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-dark" href="IniciarSesion.html">Iniciar sesión</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row" style="margin: 0;">
+            <!-- Sección del menú -->
+            <div class="col-3 menu-section">
+                <h5>Menú</h5>
+                <div class="list-group">
+                    <a href="Gasolineras.html" class="list-group-item list-group-item-action"><i
+                            class="fas fa-map-marker-alt"></i> Ubicaciones</a>
+                    <a href="Perfil.html" class="list-group-item list-group-item-action"><i class="fas fa-cog"></i>
+                        Auto</a>
+                    <a href="IniciarSesion.html" class="list-group-item list-group-item-action"><i
+                            class="fas fa-sign-in-alt"></i> Iniciar Sesión</a>
+                </div>
+            </div>
+
+            <!-- Sección del mapa -->
+            <div class="col-9 map-section">
+                <div id="map"></div>
+                <script
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNk_qmynnpmxNQveb4aVqV1LZ6UTwg7Nw&callback=initMap"
+                    async defer></script>
+                <script>
+                    function initMap() {
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            center: { lat: 28.63528, lng: -106.08889 },
+                            zoom: 13
+                        });
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <!--Footer de informacion de contacto-->
+    <footer class="footer bg-light pt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="text-left">Contacto</h5>
+                    <br>
+                    <ul class="list-unstyled">
+                        <li class="text-left">Dirección: <a href="https://maps.app.goo.gl/v59XQ16W5ncPVQXx8">Km 3.5
+                                Carretera Chihuahua a Aldama Colinas de León, 31313, 31300 Chihuahua, Chihuahua</a></li>
+                        <li class="text-left">Email: <a
+                                href="mailto:fuelfindermx@outlook.com">fuelfindermx@outlook.com</a></li>
+                        <li class="text-left">Teléfono: 656-123-4567</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="text-left">Redes Sociales</h5>
+                    <br>
+                    <ul class="list-unstyled">
+                        <li class="text-left">Facebook: <a
+                                href="https://www.facebook.com/FuelFinderMX/">FuelFinderMX</a></li>
+                        <li class="text-left">Instagram: <a
+                                href="https://www.instagram.com/FuelFinderMX/">FuelFinderMX</a></li>
+                        <li class="text-left">Whatsapp Business: <a
+                                href="https://www.instagram.com/FuelFinderMX/">FuelFinderMX</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
