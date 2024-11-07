@@ -10,9 +10,10 @@
 
     <!--Estilo en css personalizado-->
     <style>
-            .custom-text {
+        .custom-text {
             padding-bottom: 5px;
         }
+
         body {
             background-image: url(imagenes/Gasolinera.jpg);
             background-size: cover;
@@ -20,20 +21,30 @@
             width: 100vw;
             height: 100vh;
         }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #ddd;
+            /* Color y grosor de la línea */
+            margin: 20px 0;
+            /* Espaciado arriba y abajo de la línea */
+            width: 100%;
+        }
     </style>
 </head>
 
 <body>
-      <!-- Barra de navegación principal -->
-      <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <!-- Barra de navegación principal -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
         <a class="navbar-brand" href="#">FuelFinderMX</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" style="color: rgb(0, 0, 0);"href="Inicio.html">Inicio</a>
+                    <a class="nav-link" style="color: rgb(0, 0, 0);" href="Inicio.html">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="color: rgb(0, 0, 0);" href="Mapa.html">Mapa</a>
@@ -48,7 +59,8 @@
                     <a class="nav-link" style="color: rgb(0, 0, 0);" href="IniciarSesion.html">Iniciar sesion</a>
                 </li>
             </ul>
-        </div>
+               
+        </div>
     </nav>
     <!--Seccion para  el formulario de inicio de sesion-->
 
@@ -75,6 +87,7 @@
                                 <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
                                 <a href="CreateAcc.html" class="btn btn-outline-secondary btn-block">Registrate
                                 </a>
+                                <hr class="divider">
                                 <a href="RestContraseña.html" class="pt-2">¿Olvidaste tu contraseña?</a>
                             </div>
                         </form>
