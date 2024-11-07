@@ -13,6 +13,7 @@
         .custom-text {
             padding-bottom: 5px;
         }
+
         body {
             margin: 0;
             padding: 0;
@@ -59,16 +60,17 @@
 
 <body>
 
-      <!-- Barra de navegación principal -->
-      <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <!-- Barra de navegación principal -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
         <a class="navbar-brand" href="#">FuelFinderMX</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" style="color: rgb(0, 0, 0);"href="Inicio.html">Inicio</a>
+                    <a class="nav-link" style="color: rgb(0, 0, 0);" href="Inicio.html">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="color: rgb(0, 0, 0);" href="Mapa.html">Mapa</a>
@@ -83,7 +85,8 @@
                     <a class="nav-link" style="color: rgb(0, 0, 0);" href="IniciarSesion.html">Iniciar sesion</a>
                 </li>
             </ul>
-        </div>
+               
+        </div>
     </nav>
 
     <div class="container-fluid">
@@ -107,162 +110,162 @@
                     async defer></script>
                 <script>
                     function initMap() {
-                        var centro = {lat: 28.6757, lng: -106.1008}; // Coordenadas aproximadas en el centro del área
+                        var centro = { lat: 28.6757, lng: -106.1008 }; // Coordenadas aproximadas en el centro del área
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 10,
-            center: centro
-        });
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 10,
+                            center: centro
+                        });
 
-        // Array de gasolineras con sus coordenadas
-        var gasolineras = [
-            { nombre: "COMBUSTIBLES Y LUBRICANTES ATENAS SA DE CV", lat: 28.73367, lng: -106.1008 },
-            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.65146, lng: -106.0694 },
-            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.68869, lng: -106.1335 },
-            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.70224, lng: -106.1422 },
-            { nombre: "COMBUSTIBLES Y LUBRICANTES ATENAS SA DE CV", lat: 28.72977, lng: -106.0961 },
-            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.66151, lng: -106.0861 },
-            { nombre: "CORPORATIVO ARPE SA DE CV", lat: 28.71699, lng: -106.1502 },
-            { nombre: "CORPORATIVO ARPE SA DE CV", lat: 28.60305, lng: -106.1215 },
-            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.62766, lng: -106.1183 },
-            { nombre: "OPERADORA LOS NOGALES SA DE CV", lat: 28.73301, lng: -106.1143 },
-            { nombre: "AUTOSERVICIO CASANTO SA DE CV", lat: 28.62542, lng: -105.9708 },
-            { nombre: "COMBUSTIBLES TRICENTENARIO SA DE CV", lat: 28.6024, lng: -106.1029 },
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.61197, lng: -106.0918 },
-            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.74398, lng: -106.1339 },
-            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.67927, lng: -106.089 },
-            { nombre: "RAPIGAS DEL CENTRO SA DE CV", lat: 28.63337, lng: -106.0764 },
-            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.62343, lng: -106.0295 },
-            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.60008, lng: -106.1024 },
-            { nombre: "SERVICIO AMERICAS SA DE CV", lat: 28.65872, lng: -106.1029 },
-            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.63609, lng: -106.0852 },
-            { nombre: "INVERSORA SAN FELIPE SA DE CV", lat: 28.64767, lng: -106.0827 },
-            { nombre: "COMBUSTIBLES ALDAMA SA DE CV", lat: 28.83702, lng: -105.9029 },
-            { nombre: "MER DE CHIHUAHUA, S.A. DE C.V.", lat: 28.61294, lng: -106.1072 },
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.65467, lng: -106.1309 },
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.65657, lng: -106.1084 },
-            { nombre: "GUAMCO SA DE CV", lat: 28.61019, lng: -106.0648 },
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.63023, lng: -106.0217 },
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.66712, lng: -106.1113 },
-            { nombre: "GUAMCO SA DE CV", lat: 28.62768, lng: -106.0865 },
-            { nombre: "SERVICIO PERISUR DEL REAL S.A DE C.V", lat: 28.63172, lng: -106.0934},
-            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.65784, lng: -106.0934},
-            { nombre: "GASOLINERA EL NAVEGANTE, S.A. DE C.V.", lat: 28.86354, lng: -106.2239},
-            { nombre: "PRONTOGAS, S.A. DE C.V.",lat: 28.68469, lng: -106.0967},
-            { nombre: "SAZA YAPOR, S.A. DE C.V.", lat: 28.63051, lng: -106.0678},
-            { nombre: "SERVICIO LAGUNAS, S.A. DE C.V.", lat: 28.65741, lng: -106.0556},
-            { nombre: "PRONTOGAS, S.A. DE C.V.",lat: 28.66594, lng: -106.0829},
-            { nombre: "PRONTOGAS, S.A. DE C.V.",lat: 28.61955, lng: -106.0758},
-            { nombre: "GRUPO MUÑOZ MENDOZA S.A. DE C.V.",lat: 28.59689, lng: -105.9356},
-            { nombre: "OPERADORA ALCE SA DE CV",lat: 28.66896, lng: -106.0768},
-            { nombre: "GRUPO MUÑOZ MENDOZA S.A. DE C.V.",lat: 28.56308, lng: -106.1495},
-            { nombre: "Marlo Industrias S.A. de C.V.",lat: 28.71164, lng: -106.1054},
-            { nombre: "SUPER GASOLINERAS DE LA FRONTERA S.A. DE C.V.",lat: 28.59762, lng: -106.0324},
-            { nombre: "PRONTOGAS, S.A. DE C.V.",lat: 28.66836, lng: -106.0767},
-            { nombre: "PETTOEXACTO SA DE CV",lat: 28.67437, lng: -106.103},
-            { nombre: "SERVICIO AGUIMEX SA DE CV",lat: 28.72876, lng: -106.1134},
-            { nombre: "PRONTOGAS, S.A. DE C.V.",lat: 28.65041, lng: -106.038},
-            { nombre: "PRONTOGAS, S.A. DE C.V.",lat: 28.6138, lng: -106.0735},
-            { nombre: "SUPER GASOLINERAS DE LA FRONTERA S.A. DE C.V. ",lat: 28.61156, lng: -106.0328},
-            { nombre: "PRONTOGAS, S.A. DE C.V.",lat: 28.67316, lng: -105.9865},
-            { nombre: "COMBUSTIBLES SAN ALEJO SA DE CV",lat: 28.74396, lng: -105.9821},
-            { nombre: "SERVICIO RG SA DE CV",lat: 28.7175, lng: -106.1394},
-            { nombre: "COMBUSTIBLES DEL BOSQUE SA DE CV",lat: 28.81866, lng: -105.9265},
-            { nombre: "PRONTOGAS, S.A. DE C.V.",lat: 28.64582, lng: -106.1255},
-            { nombre: "SERVICIO GOEL S.A. DE C.V.",lat: 28.62793, lng: -106.0731},
-            { nombre: "PETROMAX, S.A. DE C.V.",lat: 28.69941, lng: -106.1207},
-            { nombre: "PRONTOGAS, S.A. DE C.V.",lat: 28.67361, lng: -106.1348},
-            { nombre: "GAS FRANCISCO VILLA SA DE CV",lat: 28.66581, lng: -106.1246},
-            { nombre: "PRONTOGAS, S.A. DE C.V.",lat: 28.68397, lng: -106.1},
-            { nombre: "SERVICIO CHIHUAHUA 2000 SA DE CV",lat: 28.73242, lng: -106.1273},
-            { nombre: "SERVICIO ECOLOGICO DE CHIHUAHUA SA DE CV",lat: 28.69673, lng: -106.071},
-            { nombre: "PRONTOGAS, S.A. DE C.V.",lat: 28.73228, lng: -106.1453},
-            { nombre: "COMBUSTIBLES Y SERVICIOS LOMAS LA SALLE SA DE CV",lat: 28.75149, lng: -106.1639},
-            { nombre: "PRONTOGAS, S.A. DE C.V.",lat: 28.62113, lng: -106.0306},
-            { nombre: "PRONTOGAS, S.A. DE C.V.",lat: 28.61752, lng: -106.0313},
-            { nombre: "COMBUSTIBLES Y SERVICIOS LOMAS LA SALLE SA DE CV",lat: 28.62518, lng: -106.1046},
-            { nombre: "COMBUSTIBLES JUAN PABLO II SA DE CV",lat: 28.64488, lng: -106.0147},
-            { nombre: "PRONTOGAS, S.A. DE C.V.",lat: 28.66459, lng:-106.0025},
-            { nombre: "PRONTOGAS, S.A. DE C.V.",lat: 28.6444, lng: -106.0596},
-            { nombre: "PRONTOGAS, S.A. DE C.V.",lat: 28.60357, lng: -106.1018},
-            { nombre: "PETROMALL 24 HORAS SA DE CV",lat: 28.66373, lng: -106.0869},
-            { nombre: "servicio express sa de cv",lat: 28.62416, lng: -106.0989},
-            { nombre: "servicio express sa de cv",lat: 28.66915, lng: -106.1311},
-            { nombre: "Multiservicio Azteca S.A. de C.V.",lat: 28.59039, lng: -106.1108},
-            { nombre: "servicio plaza san felipe sa de cv",lat: 28.64488, lng: -106.1005},
-            { nombre: "PRONTOGAS, S.A. DE C.V.",lat: 28.67693, lng: -106.1035},
-            { nombre: "servicio plaza san felipe sa de cv",lat: 28.65862, lng: -106.1007},
-            { nombre: "PETROMAX, S.A. DE C.V.",lat: 28.63716, lng: -106.1226},
-            { nombre: "TIMOSA LOGISTICA INTEGRAL SA DE CV",lat: 28.63321, lng: -105.9748},
-            { nombre: "Combustibles los Cuates S.A. de C.V.",lat: 28.63404, lng: -106.0829},
-            { nombre: "servicio express sa de cv",lat: 28.64613, lng: -106.1287},
-            { nombre: "PRONTOGAS, S.A. DE C.V.",lat: 28.66445, lng: -106.1109},
-            { nombre: "COMBUSTIBLES PINOS ALTOS SA DE CV",lat: 28.54031, lng: -106.1679},
-            { nombre: "PARADOR LOS MEZQUITES S.A. DE C.V.",lat: 28.52793, lng: -105.9388},
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.",lat: 28.67678, lng: -106.1022},
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.",lat: 28.86482, lng: -106.2265},
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.",lat: 28.67061, lng: -106.1332},
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.",lat: 28.71295, lng: -106.105},
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.",lat: 28.68807, lng: -106.0845},
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.",lat: 28.62205, lng: -106.0533},
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.",lat: 28.5832, lng: -106.1199},
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.",lat: 28.60483, lng: -105.9959},
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.",lat: 28.69204, lng: -106.1154},
-            { nombre: "CORPORATIVO ARPE SA DE CV",lat: 28.64294, lng: -106.007},
-            { nombre: "SERVICIO VIALIDAD SA DE CV",lat: 28.61555, lng: -106.0787},
-            { nombre: "MARGARITA SOLIS MUÑIZ",lat: 28.68087, lng: -106.0024},
-            { nombre: "SERVICIO RG SA DE CV",lat: 28.72277, lng: -106.143},
-            { nombre: "servicio 23k sa de cv",lat: 28.81046, lng: -106.1782},
-            { nombre: "PETROMAX, S.A. DE C.V.",lat: 28.62065, lng: -106.0337},
-            { nombre: "PETROMAX, S.A. DE C.V.",lat: 28.65333, lng: -106.1304},
-            { nombre: "PRONTOGAS, S.A. DE C.V.",lat: 28.62037, lng: -106.0873},
-            { nombre: "CORPORACION ADMINISTRATIVA Y DE OPERACION SA DE CV",lat: 28.62075, lng: -106.1016},
-            { nombre: "SERVICIO BORUNDA SA DE CV",lat: 28.69811, lng: -106.008},
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.",lat: 28.64205, lng: -106.0682},
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.",lat: 28.58373, lng: -105.9604},
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.",lat: 28.56003, lng: -105.9546},
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.",lat: 28.63342, lng: -106.119},
-            { nombre: "SERVICIO Y LUBRICANTES LUGA S.A. DE C.V.",lat: 28.64753, lng: -106.0683},
-            { nombre: "AUTOSERVICIO ANVALES SA DE CV",lat: 28.59577, lng: -105.9986},
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.'",lat: 28.67347, lng: -106.0261},
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.'",lat: 28.71007, lng: -106.0832},
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.'",lat: 28.81266, lng: -105.9348},
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.'",lat: 28.62524, lng: -106.0703},
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.'",lat: 28.7221, lng: -106.1484},
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.'",lat: 28.64858, lng: -106.1109},
-            { nombre: "PETROMAX, S.A. DE C.V.",lat: 28.74625, lng: -106.1591},
-            { nombre: "SERVICIO RIBERAS DE SACRAMENTO, S.A. DE C.V.",lat: 28.78184, lng:-106.1685},
-            { nombre: "PETROMAX, S.A. DE C.V.",lat: 28.64658, lng: -106.1423},
-            { nombre: "PETROMAX, S.A. DE C.V.",lat: 28.81916, lng: -106.1573},
-            { nombre: "FOLVAZ S.A. DE C.V.",lat: 28.63912, lng: -106.0843},
-            { nombre: "COMBUSTIBLES Y LUBRICANTES ATENAS SA DE CV",lat: 28.5908, lng: -106.1406},
-            { nombre: "CIMARRON LUBRICANTES SA DE CV",lat: 28.59996, lng: -106.0613},
-            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.",lat: 28.70547, lng: -106.1473},
-            { nombre: "Costco Gas, Sociedad Anónima de Capital Variable",lat: 28.64877, lng: -106.1309},
-            { nombre: "COMBUSTIBLES PACHECO SOCIEDAD ANÓNIMA DE CAPITAL VARIABLE",lat: 28.63511, lng: -106.0404},
-            { nombre: "SUPRAGAS S.A DE C.V",lat: 28.65466, lng: -106.1456},
-            { nombre: "SUPRAGAS S.A DE C.V",lat: 28.65466, lng: -106.1456},
-            { nombre: "COMBUSTIBLES JUVENTUD S. A. DE C. V.",lat: 28.69942, lng: -106.1309},
-            { nombre: "CIMARRON LUBRICANTES SA DE CV",lat: 28.63013, lng: -106.1489},
-            { nombre: "CIRCULO YOREME, S.A. DE C.V.",lat: 28.64797, lng: -106.1224},
-            { nombre: "CIRCULO YOREME, S.A. DE C.V.",lat: 28.59786, lng: -106.0261},
-            { nombre: "ADGE DIAMANTE S.A. DE C.V.",lat: 28.84261, lng: -105.9228},
-            { nombre: "RL COMERCIALIZADORA DE COMBUSTIBLES S.A. DE C.V.",lat: 28.72626, lng: -106.1376},
-            { nombre: "COMBUSTIBLES OBRERA S.A. DE C.V.",lat: 28.64693, lng: -106.0636},
-            { nombre: "GASOLINERA BOQUILLA SA DE CV",lat: 28.65572, lng: -106.0783},
-            { nombre: "GAD ENERGY S.A. DE C.V.",lat: 28.68008, lng: -106.12}
-            
-            
-        ];
+                        // Array de gasolineras con sus coordenadas
+                        var gasolineras = [
+                            { nombre: "COMBUSTIBLES Y LUBRICANTES ATENAS SA DE CV", lat: 28.73367, lng: -106.1008 },
+                            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.65146, lng: -106.0694 },
+                            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.68869, lng: -106.1335 },
+                            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.70224, lng: -106.1422 },
+                            { nombre: "COMBUSTIBLES Y LUBRICANTES ATENAS SA DE CV", lat: 28.72977, lng: -106.0961 },
+                            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.66151, lng: -106.0861 },
+                            { nombre: "CORPORATIVO ARPE SA DE CV", lat: 28.71699, lng: -106.1502 },
+                            { nombre: "CORPORATIVO ARPE SA DE CV", lat: 28.60305, lng: -106.1215 },
+                            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.62766, lng: -106.1183 },
+                            { nombre: "OPERADORA LOS NOGALES SA DE CV", lat: 28.73301, lng: -106.1143 },
+                            { nombre: "AUTOSERVICIO CASANTO SA DE CV", lat: 28.62542, lng: -105.9708 },
+                            { nombre: "COMBUSTIBLES TRICENTENARIO SA DE CV", lat: 28.6024, lng: -106.1029 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.61197, lng: -106.0918 },
+                            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.74398, lng: -106.1339 },
+                            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.67927, lng: -106.089 },
+                            { nombre: "RAPIGAS DEL CENTRO SA DE CV", lat: 28.63337, lng: -106.0764 },
+                            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.62343, lng: -106.0295 },
+                            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.60008, lng: -106.1024 },
+                            { nombre: "SERVICIO AMERICAS SA DE CV", lat: 28.65872, lng: -106.1029 },
+                            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.63609, lng: -106.0852 },
+                            { nombre: "INVERSORA SAN FELIPE SA DE CV", lat: 28.64767, lng: -106.0827 },
+                            { nombre: "COMBUSTIBLES ALDAMA SA DE CV", lat: 28.83702, lng: -105.9029 },
+                            { nombre: "MER DE CHIHUAHUA, S.A. DE C.V.", lat: 28.61294, lng: -106.1072 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.65467, lng: -106.1309 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.65657, lng: -106.1084 },
+                            { nombre: "GUAMCO SA DE CV", lat: 28.61019, lng: -106.0648 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.63023, lng: -106.0217 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.66712, lng: -106.1113 },
+                            { nombre: "GUAMCO SA DE CV", lat: 28.62768, lng: -106.0865 },
+                            { nombre: "SERVICIO PERISUR DEL REAL S.A DE C.V", lat: 28.63172, lng: -106.0934 },
+                            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.65784, lng: -106.0934 },
+                            { nombre: "GASOLINERA EL NAVEGANTE, S.A. DE C.V.", lat: 28.86354, lng: -106.2239 },
+                            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.68469, lng: -106.0967 },
+                            { nombre: "SAZA YAPOR, S.A. DE C.V.", lat: 28.63051, lng: -106.0678 },
+                            { nombre: "SERVICIO LAGUNAS, S.A. DE C.V.", lat: 28.65741, lng: -106.0556 },
+                            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.66594, lng: -106.0829 },
+                            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.61955, lng: -106.0758 },
+                            { nombre: "GRUPO MUÑOZ MENDOZA S.A. DE C.V.", lat: 28.59689, lng: -105.9356 },
+                            { nombre: "OPERADORA ALCE SA DE CV", lat: 28.66896, lng: -106.0768 },
+                            { nombre: "GRUPO MUÑOZ MENDOZA S.A. DE C.V.", lat: 28.56308, lng: -106.1495 },
+                            { nombre: "Marlo Industrias S.A. de C.V.", lat: 28.71164, lng: -106.1054 },
+                            { nombre: "SUPER GASOLINERAS DE LA FRONTERA S.A. DE C.V.", lat: 28.59762, lng: -106.0324 },
+                            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.66836, lng: -106.0767 },
+                            { nombre: "PETTOEXACTO SA DE CV", lat: 28.67437, lng: -106.103 },
+                            { nombre: "SERVICIO AGUIMEX SA DE CV", lat: 28.72876, lng: -106.1134 },
+                            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.65041, lng: -106.038 },
+                            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.6138, lng: -106.0735 },
+                            { nombre: "SUPER GASOLINERAS DE LA FRONTERA S.A. DE C.V. ", lat: 28.61156, lng: -106.0328 },
+                            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.67316, lng: -105.9865 },
+                            { nombre: "COMBUSTIBLES SAN ALEJO SA DE CV", lat: 28.74396, lng: -105.9821 },
+                            { nombre: "SERVICIO RG SA DE CV", lat: 28.7175, lng: -106.1394 },
+                            { nombre: "COMBUSTIBLES DEL BOSQUE SA DE CV", lat: 28.81866, lng: -105.9265 },
+                            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.64582, lng: -106.1255 },
+                            { nombre: "SERVICIO GOEL S.A. DE C.V.", lat: 28.62793, lng: -106.0731 },
+                            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.69941, lng: -106.1207 },
+                            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.67361, lng: -106.1348 },
+                            { nombre: "GAS FRANCISCO VILLA SA DE CV", lat: 28.66581, lng: -106.1246 },
+                            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.68397, lng: -106.1 },
+                            { nombre: "SERVICIO CHIHUAHUA 2000 SA DE CV", lat: 28.73242, lng: -106.1273 },
+                            { nombre: "SERVICIO ECOLOGICO DE CHIHUAHUA SA DE CV", lat: 28.69673, lng: -106.071 },
+                            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.73228, lng: -106.1453 },
+                            { nombre: "COMBUSTIBLES Y SERVICIOS LOMAS LA SALLE SA DE CV", lat: 28.75149, lng: -106.1639 },
+                            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.62113, lng: -106.0306 },
+                            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.61752, lng: -106.0313 },
+                            { nombre: "COMBUSTIBLES Y SERVICIOS LOMAS LA SALLE SA DE CV", lat: 28.62518, lng: -106.1046 },
+                            { nombre: "COMBUSTIBLES JUAN PABLO II SA DE CV", lat: 28.64488, lng: -106.0147 },
+                            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.66459, lng: -106.0025 },
+                            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.6444, lng: -106.0596 },
+                            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.60357, lng: -106.1018 },
+                            { nombre: "PETROMALL 24 HORAS SA DE CV", lat: 28.66373, lng: -106.0869 },
+                            { nombre: "servicio express sa de cv", lat: 28.62416, lng: -106.0989 },
+                            { nombre: "servicio express sa de cv", lat: 28.66915, lng: -106.1311 },
+                            { nombre: "Multiservicio Azteca S.A. de C.V.", lat: 28.59039, lng: -106.1108 },
+                            { nombre: "servicio plaza san felipe sa de cv", lat: 28.64488, lng: -106.1005 },
+                            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.67693, lng: -106.1035 },
+                            { nombre: "servicio plaza san felipe sa de cv", lat: 28.65862, lng: -106.1007 },
+                            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.63716, lng: -106.1226 },
+                            { nombre: "TIMOSA LOGISTICA INTEGRAL SA DE CV", lat: 28.63321, lng: -105.9748 },
+                            { nombre: "Combustibles los Cuates S.A. de C.V.", lat: 28.63404, lng: -106.0829 },
+                            { nombre: "servicio express sa de cv", lat: 28.64613, lng: -106.1287 },
+                            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.66445, lng: -106.1109 },
+                            { nombre: "COMBUSTIBLES PINOS ALTOS SA DE CV", lat: 28.54031, lng: -106.1679 },
+                            { nombre: "PARADOR LOS MEZQUITES S.A. DE C.V.", lat: 28.52793, lng: -105.9388 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.67678, lng: -106.1022 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.86482, lng: -106.2265 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.67061, lng: -106.1332 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.71295, lng: -106.105 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.68807, lng: -106.0845 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.62205, lng: -106.0533 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.5832, lng: -106.1199 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.60483, lng: -105.9959 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.69204, lng: -106.1154 },
+                            { nombre: "CORPORATIVO ARPE SA DE CV", lat: 28.64294, lng: -106.007 },
+                            { nombre: "SERVICIO VIALIDAD SA DE CV", lat: 28.61555, lng: -106.0787 },
+                            { nombre: "MARGARITA SOLIS MUÑIZ", lat: 28.68087, lng: -106.0024 },
+                            { nombre: "SERVICIO RG SA DE CV", lat: 28.72277, lng: -106.143 },
+                            { nombre: "servicio 23k sa de cv", lat: 28.81046, lng: -106.1782 },
+                            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.62065, lng: -106.0337 },
+                            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.65333, lng: -106.1304 },
+                            { nombre: "PRONTOGAS, S.A. DE C.V.", lat: 28.62037, lng: -106.0873 },
+                            { nombre: "CORPORACION ADMINISTRATIVA Y DE OPERACION SA DE CV", lat: 28.62075, lng: -106.1016 },
+                            { nombre: "SERVICIO BORUNDA SA DE CV", lat: 28.69811, lng: -106.008 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.64205, lng: -106.0682 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.58373, lng: -105.9604 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.56003, lng: -105.9546 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.63342, lng: -106.119 },
+                            { nombre: "SERVICIO Y LUBRICANTES LUGA S.A. DE C.V.", lat: 28.64753, lng: -106.0683 },
+                            { nombre: "AUTOSERVICIO ANVALES SA DE CV", lat: 28.59577, lng: -105.9986 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.'", lat: 28.67347, lng: -106.0261 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.'", lat: 28.71007, lng: -106.0832 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.'", lat: 28.81266, lng: -105.9348 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.'", lat: 28.62524, lng: -106.0703 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.'", lat: 28.7221, lng: -106.1484 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.'", lat: 28.64858, lng: -106.1109 },
+                            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.74625, lng: -106.1591 },
+                            { nombre: "SERVICIO RIBERAS DE SACRAMENTO, S.A. DE C.V.", lat: 28.78184, lng: -106.1685 },
+                            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.64658, lng: -106.1423 },
+                            { nombre: "PETROMAX, S.A. DE C.V.", lat: 28.81916, lng: -106.1573 },
+                            { nombre: "FOLVAZ S.A. DE C.V.", lat: 28.63912, lng: -106.0843 },
+                            { nombre: "COMBUSTIBLES Y LUBRICANTES ATENAS SA DE CV", lat: 28.5908, lng: -106.1406 },
+                            { nombre: "CIMARRON LUBRICANTES SA DE CV", lat: 28.59996, lng: -106.0613 },
+                            { nombre: "SERVICIOS GASOLINEROS DE MEXICO, S.A. DE C.V.", lat: 28.70547, lng: -106.1473 },
+                            { nombre: "Costco Gas, Sociedad Anónima de Capital Variable", lat: 28.64877, lng: -106.1309 },
+                            { nombre: "COMBUSTIBLES PACHECO SOCIEDAD ANÓNIMA DE CAPITAL VARIABLE", lat: 28.63511, lng: -106.0404 },
+                            { nombre: "SUPRAGAS S.A DE C.V", lat: 28.65466, lng: -106.1456 },
+                            { nombre: "SUPRAGAS S.A DE C.V", lat: 28.65466, lng: -106.1456 },
+                            { nombre: "COMBUSTIBLES JUVENTUD S. A. DE C. V.", lat: 28.69942, lng: -106.1309 },
+                            { nombre: "CIMARRON LUBRICANTES SA DE CV", lat: 28.63013, lng: -106.1489 },
+                            { nombre: "CIRCULO YOREME, S.A. DE C.V.", lat: 28.64797, lng: -106.1224 },
+                            { nombre: "CIRCULO YOREME, S.A. DE C.V.", lat: 28.59786, lng: -106.0261 },
+                            { nombre: "ADGE DIAMANTE S.A. DE C.V.", lat: 28.84261, lng: -105.9228 },
+                            { nombre: "RL COMERCIALIZADORA DE COMBUSTIBLES S.A. DE C.V.", lat: 28.72626, lng: -106.1376 },
+                            { nombre: "COMBUSTIBLES OBRERA S.A. DE C.V.", lat: 28.64693, lng: -106.0636 },
+                            { nombre: "GASOLINERA BOQUILLA SA DE CV", lat: 28.65572, lng: -106.0783 },
+                            { nombre: "GAD ENERGY S.A. DE C.V.", lat: 28.68008, lng: -106.12 }
 
-        // Crear marcadores para cada gasolinera
-        gasolineras.forEach(function(gasolineras) {
-            var marker = new google.maps.Marker({
-                position: { lat: gasolineras.lat, lng: gasolineras.lng },
-                map: map,
-                title: gasolineras.nombre
-            });
-        });
+
+                        ];
+
+                        // Crear marcadores para cada gasolinera
+                        gasolineras.forEach(function (gasolineras) {
+                            var marker = new google.maps.Marker({
+                                position: { lat: gasolineras.lat, lng: gasolineras.lng },
+                                map: map,
+                                title: gasolineras.nombre
+                            });
+                        });
                         ;
                     }
                 </script>
@@ -270,46 +273,46 @@
         </div>
     </div>
 
-  <!--Footer de informacion de contacto-->
+    <!--Footer de informacion de contacto-->
 
-  <footer class="bg-dark text-light pt-5 pb-3 px-5 mt-5 ">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h5 class="text-left">Contacto</h5>
-                <br>
-                <ul class="list-unstyled">
-                    <li class="custom-text text-left"><i class="fa-solid fa-map"></i> Direccion: <a
-                            href="https://maps.app.goo.gl/v59XQ16W5ncPVQXx8">Km 3.5 Carretera
-                            Chihuahua a Aldama Colinas de León, 31313, 31300 Chihuahua, Chihuahua · 06 km</a>
-                    </li>
-                    <li class="custom-text text-left"><i class="fa-solid fa-envelope"></i> Email 1: <a
-                            href="mailto:fuelfindermx@outlook.com">fuelfindermx@outlook.com</a>
-                    </li>
-                    <li class="custom-text text-left"><i class="fa-solid fa-envelope"></i> Email 2: <a
-                            href="mailto:fuelfindermx@gmail.com">fuelfindermx@gmail.com</a>
-                    </li>
-                    <li class="custom-text text-left"><i class="fa-solid fa-phone"></i> Teléfono: 614-552-0929</li>
-                </ul>
-            </div>
-            <div class="col-md-6">
-                <h5 class=text-left">Redes Sociales</h5>
-                <br>
-                <ul class="list-unstyled">
-                    <li class="custom-text text-left"> <i class="fa-brands fa-facebook"></i> Facebook: <a
-                            href="https://www.facebook.com/profile.php?id=61568152538733">FuelFinderMX</a>
-                    </li>
-                    <li class="custom-text text-left"> <i class="fa-brands fa-instagram"></i> Instagram: <a
-                            href="https://www.instagram.com/fuelfindermx/">FuelFinderMX</a>
-                    </li>
-                    <li class="custom-text text-left"><i class="fa-brands fa-whatsapp"></i> Whatsapp Business: <a
-                            href="https://wa.me/526145520929">FuelFinderMX</a>
-                    </li>
-                </ul>
+    <footer class="bg-dark text-light pt-5 pb-3 px-5 mt-5 ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="text-left">Contacto</h5>
+                    <br>
+                    <ul class="list-unstyled">
+                        <li class="custom-text text-left"><i class="fa-solid fa-map"></i> Direccion: <a
+                                href="https://maps.app.goo.gl/v59XQ16W5ncPVQXx8">Km 3.5 Carretera
+                                Chihuahua a Aldama Colinas de León, 31313, 31300 Chihuahua, Chihuahua · 06 km</a>
+                        </li>
+                        <li class="custom-text text-left"><i class="fa-solid fa-envelope"></i> Email 1: <a
+                                href="mailto:fuelfindermx@outlook.com">fuelfindermx@outlook.com</a>
+                        </li>
+                        <li class="custom-text text-left"><i class="fa-solid fa-envelope"></i> Email 2: <a
+                                href="mailto:fuelfindermx@gmail.com">fuelfindermx@gmail.com</a>
+                        </li>
+                        <li class="custom-text text-left"><i class="fa-solid fa-phone"></i> Teléfono: 614-552-0929</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5 class=text-left">Redes Sociales</h5>
+                    <br>
+                    <ul class="list-unstyled">
+                        <li class="custom-text text-left"> <i class="fa-brands fa-facebook"></i> Facebook: <a
+                                href="https://www.facebook.com/profile.php?id=61568152538733">FuelFinderMX</a>
+                        </li>
+                        <li class="custom-text text-left"> <i class="fa-brands fa-instagram"></i> Instagram: <a
+                                href="https://www.instagram.com/fuelfindermx/">FuelFinderMX</a>
+                        </li>
+                        <li class="custom-text text-left"><i class="fa-brands fa-whatsapp"></i> Whatsapp Business: <a
+                                href="https://wa.me/526145520929">FuelFinderMX</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
