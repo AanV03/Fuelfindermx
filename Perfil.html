@@ -6,6 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FuelFinderMX - Perfil de usuario</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <style>
+        /* Fuente y color general */
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+    
+        /* Estilos de los cuadros */
+        .custom-height {
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+    
+        /* Estilo del título de la sección */
+        .section-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+    
+        /* Estilo de subtítulos */
+        .subsection-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    
+        /* Párrafos de texto */
+        p {
+            font-size: 1em;
+            margin: 0;
+            line-height: 1.5em;
+        }
+    </style>
 </head>
 
 <body>
@@ -32,53 +67,53 @@
         </ul>
     </nav>
 
-    <!--Area de informacion del usuario-->
+    <!-- Área de información del usuario y del vehículo -->
     <div class="container mt-5">
-        <div class="row justify-content-center">
+        <div class="row">
+            <!-- Columna para el perfil de usuario -->
             <div class="col-md-6">
-                <div class="row bg-light">
-                    <div class="col-md-6">
-                        <h2 class="text-center">Perfil de usuario</h2>
-                    </div>
-                    <div class="col-md-6">
-                        <a href="ModDatos.html" class="btn btn-primary float-right">Modificar datos</a>
+                <div class="p-3 border rounded shadow h-100 custom-height">
+                    <h2 class="section-title text-center">Perfil de usuario</h2>
+                    <div class="row mt-5">
+                        <div class="col-md-6">
+                            <h5 class="subsection-title">Datos de usuario</h5>
+                            <p>Nombre: Juan Pérez</p>
+                            <p>Apellido: García</p>
+                            <p>Correo electrónico: juan.perez@example.com</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="subsection-title">Datos de cuenta</h5>
+                            <p>Contraseña: ********</p>
+                            <p>Fecha de creación: 2023-02-20</p>
+                        </div>
                     </div>
                 </div>
-                <div class="row mt-5">
-                    <div class="col-md-6">
-                        <h5>Datos de usuario</h5>
-                        <p>Nombre: Juan Pérez</p>
-                        <p>Apellido: García</p>
-                        <p>Correo electrónico: juan.perez@example.com</p>
-                    </div>
-                    <div class="col-md-6">
-                        <h5>Datos de cuenta</h5>
-                        <p>Contraseña: ********</p>
-                        <p>Fecha de creación: 2023-02-20</p>
-                    </div>
+            </div>
+
+            <!-- Columna para los datos del vehículo -->
+            <div class="col-md-6">
+                <div class="p-3 border rounded shadow h-100 custom-height">
+                    <h2 class="section-title text-center">Modificar datos del vehículo</h2>
+                    <section>
+                        <div class="row mt-5">
+                            <div class="col-md-4">
+                                <img src="imagenes/Vehiculo.png" class="w-100 h-100" alt="Vehículo">
+                            </div>
+                            <div class="col-md-8">
+                                <p>Marca: Toyota</p>
+                                <p>Modelo: Corolla</p>
+                                <p>Año: 2015</p>
+                                <p>Capacidad del Tanque: 35L</p>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!--Area de informacion del Vehiculo-->
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <h2 class="text-center">Datos del vehículo</h2>
-                <div class="row mt-5">
-                    <div class="col-md-4">
-                        <img src="imagenes/Vehiculo.png" class="w-100 h-100" alt="Vehículo">
-                    </div>
-                    <div class="col-md-8">
-                        <h5>Datos del vehículo</h5>
-                        <p>Marca: Toyota</p>
-                        <p>Modelo: Corolla</p>
-                        <p>Año: 2015</p>
-                        <p>Capacidad del Tanque: 35L</p>
-                    </div>
-                </div>
-            </div>
+        <!-- Botón centrado debajo de ambas secciones -->
+        <div class="text-center mt-4">
+            <a href="ModDatos.html" class="btn btn-primary">Modificar datos</a>
         </div>
     </div>
 
@@ -90,8 +125,10 @@
                     <h5 class="text-left">Contacto</h5>
                     <br>
                     <ul class="list-unstyled">
-                        <li class="text-left">Direccion: <a href="https://maps.app.goo.gl/v59XQ16W5ncPVQXx8">Km 3.5
-                                Carretera Chihuahua a Aldama Colinas de León, 31313, 31300 Chihuahua, Chihuahua · 06
+                        <li class="text-left">Direccion: <a href="https://maps.app.goo.gl/v59XQ16W5ncPVQXx8">Km
+                                3.5
+                                Carretera Chihuahua a Aldama Colinas de León, 31313, 31300 Chihuahua, Chihuahua
+                                · 06
                                 km</a>
                         </li>
                         <li class="text-left">Email: <a
