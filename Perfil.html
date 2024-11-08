@@ -9,36 +9,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
     <style>
-    .custom-text {
+        .custom-text {
             padding-bottom: 5px;
         }
+
         /* Fuente y color general */
         body {
             font-family: Arial, sans-serif;
             color: #333;
         }
-    
+
         /* Estilos de los cuadros */
         .custom-height {
             min-height: 300px;
             display: flex;
             flex-direction: column;
         }
-    
+
         /* Estilo del título de la sección */
         .section-title {
             font-size: 1.8em;
             font-weight: bold;
             margin-bottom: 20px;
         }
-    
+
         /* Estilo de subtítulos */
         .subsection-title {
             font-size: 1.2em;
             font-weight: bold;
             margin-bottom: 10px;
         }
-    
+
         /* Párrafos de texto */
         p {
             font-size: 1em;
@@ -50,16 +51,17 @@
 
 <body>
 
-      <!-- Barra de navegación principal -->
-      <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <!-- Barra de navegación principal -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
         <a class="navbar-brand" href="#">FuelFinderMX</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" style="color: rgb(0, 0, 0);"href="Inicio.html">Inicio</a>
+                    <a class="nav-link" style="color: rgb(0, 0, 0);" href="Inicio.html">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="color: rgb(0, 0, 0);" href="Mapa.html">Mapa</a>
@@ -74,7 +76,8 @@
                     <a class="nav-link" style="color: rgb(0, 0, 0);" href="IniciarSesion.html">Iniciar sesion</a>
                 </li>
             </ul>
-        </div>
+               
+        </div>
     </nav>
 
     <!-- Área de información del usuario y del vehículo -->
@@ -86,15 +89,23 @@
                     <h2 class="section-title text-center">Perfil de usuario</h2>
                     <div class="row mt-5">
                         <div class="col-md-6">
-                            <h5 class="subsection-title">Datos de usuario</h5>
-                            <p>Nombre: Juan Pérez</p>
-                            <p>Apellido: García</p>
-                            <p>Correo electrónico: juan.perez@example.com</p>
+                            <h5 class="subsection-title" style="padding-bottom: 7px;">Datos de usuario</h5>
+                            <p style="font-weight: bold;">Nombre(s):</p>
+                            <p>Juan Pérez</p>
+                            <br>
+                            <p style="font-weight: bold;">Apellido(s):</p>
+                            <p>Juan Pérez</p>
+                            <br>
+                            <p style="font-weight: bold;">Corre electronico:</p>
+                            <p>JuanPérez@gmail.com</p>
                         </div>
                         <div class="col-md-6">
-                            <h5 class="subsection-title">Datos de cuenta</h5>
-                            <p>Contraseña: ********</p>
-                            <p>Fecha de creación: 2023-02-20</p>
+                            <h5 class="subsection-title" style="padding-bottom: 7px;">Datos de cuenta</h5>
+                            <p style="font-weight: bold;">Contraseña:</p>
+                            <p>********</p>
+                            <br>
+                            <p style="font-weight: bold;">Fecha de creación:</p>
+                            <p>2023-02-20</p>
                         </div>
                     </div>
                 </div>
@@ -106,14 +117,21 @@
                     <h2 class="section-title text-center">Modificar datos del vehículo</h2>
                     <section>
                         <div class="row mt-5">
-                            <div class="col-md-8">
-                                <h5 class="subsection-title">Datos del Vehiculo</h5>
-                                <p>Marca: Toyota</p>
-                                <p>Modelo: Corolla</p>
-                                <p>Año: 2015</p>
-                                <p>Capacidad del Tanque: 35L</p>
+                            <div class="col-md-6">
+                                <h5 class="subsection-title" style="padding-bottom: 7px;">Datos del Vehiculo</h5>
+                                <p style="font-weight: bold;">Marca: </p>
+                                <p>Toyota</p>
+                                <br>
+                                <p style="font-weight: bold;">Modelo: </p>
+                                <p>Corolla</p>
+                                <br>
+                                <p style="font-weight: bold;">año: </p>
+                                <p>2015</p>
+                                <br>
+                                <p style="font-weight: bold;">Capacidad del tanque</p>
+                                <p>35L</p>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <img src="imagenes/Vehiculo.png" class="w-100 h-100" alt="Vehículo">
                             </div>
                         </div>
@@ -128,46 +146,46 @@
         </div>
     </div>
 
-   <!--Footer de informacion de contacto-->
+    <!--Footer de informacion de contacto-->
 
-   <footer class="bg-dark text-light pt-5 pb-3 px-5 mt-5 ">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h5 class="text-left">Contacto</h5>
-                <br>
-                <ul class="list-unstyled">
-                    <li class="custom-text text-left"><i class="fa-solid fa-map"></i> Direccion: <a
-                            href="https://maps.app.goo.gl/v59XQ16W5ncPVQXx8">Km 3.5 Carretera
-                            Chihuahua a Aldama Colinas de León, 31313, 31300 Chihuahua, Chihuahua · 06 km</a>
-                    </li>
-                    <li class="custom-text text-left"><i class="fa-solid fa-envelope"></i> Email 1: <a
-                            href="mailto:fuelfindermx@outlook.com">fuelfindermx@outlook.com</a>
-                    </li>
-                    <li class="custom-text text-left"><i class="fa-solid fa-envelope"></i> Email 2: <a
-                            href="mailto:fuelfindermx@gmail.com">fuelfindermx@gmail.com</a>
-                    </li>
-                    <li class="custom-text text-left"><i class="fa-solid fa-phone"></i> Teléfono: 614-552-0929</li>
-                </ul>
-            </div>
-            <div class="col-md-6">
-                <h5 class=text-left">Redes Sociales</h5>
-                <br>
-                <ul class="list-unstyled">
-                    <li class="custom-text text-left"> <i class="fa-brands fa-facebook"></i> Facebook: <a
-                            href="https://www.facebook.com/profile.php?id=61568152538733">FuelFinderMX</a>
-                    </li>
-                    <li class="custom-text text-left"> <i class="fa-brands fa-instagram"></i> Instagram: <a
-                            href="https://www.instagram.com/fuelfindermx/">FuelFinderMX</a>
-                    </li>
-                    <li class="custom-text text-left"><i class="fa-brands fa-whatsapp"></i> Whatsapp Business: <a
-                            href="https://wa.me/526145520929">FuelFinderMX</a>
-                    </li>
-                </ul>
+    <footer class="bg-dark text-light pt-5 pb-3 px-5 mt-5 ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="text-left">Contacto</h5>
+                    <br>
+                    <ul class="list-unstyled">
+                        <li class="custom-text text-left"><i class="fa-solid fa-map"></i> Direccion: <a
+                                href="https://maps.app.goo.gl/v59XQ16W5ncPVQXx8">Km 3.5 Carretera
+                                Chihuahua a Aldama Colinas de León, 31313, 31300 Chihuahua, Chihuahua · 06 km</a>
+                        </li>
+                        <li class="custom-text text-left"><i class="fa-solid fa-envelope"></i> Email 1: <a
+                                href="mailto:fuelfindermx@outlook.com">fuelfindermx@outlook.com</a>
+                        </li>
+                        <li class="custom-text text-left"><i class="fa-solid fa-envelope"></i> Email 2: <a
+                                href="mailto:fuelfindermx@gmail.com">fuelfindermx@gmail.com</a>
+                        </li>
+                        <li class="custom-text text-left"><i class="fa-solid fa-phone"></i> Teléfono: 614-552-0929</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5 class=text-left">Redes Sociales</h5>
+                    <br>
+                    <ul class="list-unstyled">
+                        <li class="custom-text text-left"> <i class="fa-brands fa-facebook"></i> Facebook: <a
+                                href="https://www.facebook.com/profile.php?id=61568152538733">FuelFinderMX</a>
+                        </li>
+                        <li class="custom-text text-left"> <i class="fa-brands fa-instagram"></i> Instagram: <a
+                                href="https://www.instagram.com/fuelfindermx/">FuelFinderMX</a>
+                        </li>
+                        <li class="custom-text text-left"><i class="fa-brands fa-whatsapp"></i> Whatsapp Business: <a
+                                href="https://wa.me/526145520929">FuelFinderMX</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
