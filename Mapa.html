@@ -55,6 +55,17 @@
         .map-section {
             height: 100vh;
         }
+
+        #menu {
+            max-height: 150px;
+            transition: max-height 0.5s ease;
+        }
+
+        #menu.expanded {
+            max-height: 300px;
+        }
+
+
     </style>
 </head>
 
@@ -90,20 +101,30 @@
     </nav>
 
     <div class="container-fluid">
-        <div class="row" style="margin: 0;">
+        <div class="row no-gutters">
+            <!-- Botón de hamburguesa, visible solo en pantallas pequeñas -->
+            <div class="col-12 d-md-none p-2">
+                <button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#menu" aria-expanded="false" aria-controls="menu">
+                    ☰ Menú
+                </button>
+            </div>
             <!-- Sección del menú -->
-            <div class="col-3 menu-section">
-                <h5>Menú</h5>
-                <div class="list-group">
-                    <a href="Gasolineras.html" class="list-group-item list-group-item-action"><i
-                            class="fas fa-map-marker-alt"></i> Ubicaciones</a>
-                    <a href="Perfil.html" class="list-group-item list-group-item-action"><i class="fas fa-cog"></i>
-                        Auto</a>
+            <div class="col-md-3 collapse d-md-block" id="menu">
+                <div class="menu-section bg-light">
+                    <div class="list-group">
+                        <a href="Gasolineras.html" class="list-group-item list-group-item-action">
+                            <i class="fas fa-map-marker-alt"></i> Ubicaciones
+                        </a>
+                        <a href="Perfil.html" class="list-group-item list-group-item-action">
+                            <i class="fas fa-cog"></i> Auto
+                        </a>
+                    </div>
                 </div>
             </div>
 
+
             <!-- Sección del mapa -->
-            <div class="col-9 map-section">
+            <div class="col-12 col-md-9 main-content">
                 <div id="map"></div>
                 <script
                     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNk_qmynnpmxNQveb4aVqV1LZ6UTwg7Nw&callback=initMap"
