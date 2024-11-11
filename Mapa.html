@@ -58,13 +58,24 @@
 
         #menu {
             max-height: 150px;
-            transition: max-height 0.5s ease;
+            transition: height 0.5s ease;
         }
 
         #menu.expanded {
             max-height: 300px;
         }
 
+        @media (max-width: 768px) {
+            .navbar-collapse {
+    
+            border: none;
+            border-top: 2px solid #ddd;
+            /* Color y grosor de la línea */
+            margin: 10px 0; 
+            /* Espaciado arriba y abajo de la línea */
+            width: 100%;
+            }
+        }
 
     </style>
 </head>
@@ -96,8 +107,9 @@
                     <a class="nav-link" style="color: rgb(0, 0, 0);" href="IniciarSesion.html">Iniciar sesion</a>
                 </li>
             </ul>
-               
+        
         </div>
+        
     </nav>
 
     <div class="container-fluid">
