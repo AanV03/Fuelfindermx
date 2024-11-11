@@ -55,17 +55,17 @@
                 <br>
                 <form id="PassForm" novalidate>
                     <div class="form-group">
-                        <label for="contraseña">Ingresa la contraseña nueva</label>
-                        <input type="text" class="form-control" id="contraseña" placeholder="Ingrese su nueva contraseña"
+                        <label for="contraseña">Ingresa tu correo electrónico </label>
+                        <input type="text" class="form-control" id="email" placeholder="Ingresa tu correo electrónico"
                             required title="Por favor, ingrese la nueva contraseña.">
                     </div>
                     <div class="form-group">
-                        <label for="contraseña">Confirma contraseña</label>
-                        <input type="text" class="form-control" id="contraseña" placeholder="confirme la contraseña"
+                        <label for="contraseña">Confirma tu correo electrónico</label>
+                        <input type="text" class="form-control" id="email" placeholder="Confirma tu correo electrónico"
                             required title="Por favor, ingrese la confirme contraseña.">
                     </div>
                     <br>
-                    <a href="ConfCorreo.html" class="btn btn-primary btn-block">Siguiente</a>
+                    <button type="submit" class="btn btn-dark btn-block">siguiente</button>
                 </form>
             </div>
         </div>
@@ -119,7 +119,6 @@
 
     <!-- Script para manejo de formulario y mensaje de confirmación -->
     <script>
-        // Mostrar un mensaje de agradecimiento y redirigir al inicio
         document.getElementById("PassForm").addEventListener("submit", function (e) {
             e.preventDefault(); // Prevenir que el formulario se envíe tradicionalmente
 
