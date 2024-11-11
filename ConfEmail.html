@@ -51,9 +51,9 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-5">
-                <h2 class="text-center">Restablecer contraseña</h2>
+                <h2 class="text-center">Ingresa tu Correo</h2>
                 <br>
-                <form id="PassForm" novalidate>
+                <form id="EmailForm" novalidate>
                     <div class="form-group">
                         <label for="contraseña">Ingresa tu correo electrónico </label>
                         <input type="text" class="form-control" id="email" placeholder="Ingresa tu correo electrónico"
@@ -119,13 +119,13 @@
 
     <!-- Script para manejo de formulario y mensaje de confirmación -->
     <script>
-        document.getElementById("PassForm").addEventListener("submit", function (e) {
+        document.getElementById("EmailForm").addEventListener("submit", function (e) {
             e.preventDefault(); // Prevenir que el formulario se envíe tradicionalmente
 
             // Validar si el formulario es válido
             if (this.checkValidity()) {
                 alert("¡Su contraseña ha sido agregada exitosamente.");
-                window.location.href = "IniciarSesion.html";
+                window.location.href = "ConfToken.html";
             } else {
                 alert("Por favor, complete todos los campos obligatorios.");
             }
