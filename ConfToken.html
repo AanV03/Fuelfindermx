@@ -50,56 +50,40 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <h2 class="text-center">Confirmar correo electronico</h2>
+                <h2 class="text-center">Confirmar correo electrónico</h2>
                 <br>
-                <h6 class="text-center">Ingresa el codigo que llego a tu correo electronico</h6>
+                <h6 class="text-center">Ingresa el código que llegó a tu correo electrónico</h6>
                 <br>
                 <form id="TokenForm" novalidate>
                     <div class="form-group">
                         <div class="row justify-content-center" style="display: flex; gap: 5px;">
                             <input type="text" style="width: 45px; height: 60px; font-size: 2em; text-align: center;"
-                                maxlength="1" inputmode="numeric;" oninput="moveFocus(this)" required>
+                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)" required>
                             <input type="text" style="width: 45px; height: 60px; font-size: 2em; text-align: center;"
-                                maxlength="1" inputmode="numeric;" oninput="moveFocus(this)" required>
+                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)" required>
                             <input type="text" style="width: 45px; height: 60px; font-size: 2em; text-align: center;"
-                                maxlength="1" inputmode="numeric;" oninput="moveFocus(this)" required>
+                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)" required>
                             <input type="text" style="width: 45px; height: 60px; font-size: 2em; text-align: center;"
-                                maxlength="1" inputmode="numeric;" oninput="moveFocus(this)" required>
+                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)" required>
                             <input type="text" style="width: 45px; height: 60px; font-size: 2em; text-align: center;"
-                                maxlength="1" inputmode="numeric;" oninput="moveFocus(this)" required>
+                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)" required>
                             <input type="text" style="width: 45px; height: 60px; font-size: 2em; text-align: center;"
-                                maxlength="1" inputmode="numeric;" oninput="moveFocus(this)" required>
+                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)" required>
                         </div>
                         <br>
                         <button type="submit" class="btn btn-dark btn-block">Siguiente</button>
-                        <style>
-                            .submit-button {
-                                display: block;
-                                width: 100%;
-                                max-width: 300px;
-                                font-size: 0.9em;
-                                background-color: #007bff;
-                                color: white;
-                                text-align: center;
-                                text-decoration: none;
-                                padding: 8px;
-                                margin: 0 auto;
-                                margin-top: 15px;
-                                cursor: pointer;
-                                border-radius: 4px;
-                                transition: background-color 0.3s;
-                            }
-
-                            .submit-button:hover {
-                                background-color: #0056b3;
-                            }
-                        </style>
                     </div>
                 </form>
                 <script>
-                    function moveFocus(currentInput, direction) {
-                        if (currentInput.value.length === currentInput.maxLength) {
-                            let nextInput = currentInput.nextElementSibling;
+                    function validateAndMoveFocus(input) {
+                        // Si el valor no es un número, borra el carácter
+                        if (!/^[0-9]$/.test(input.value)) {
+                            input.value = '';
+                            return;
+                        }
+                        // Mover el foco al siguiente input si se ingresó un número
+                        if (input.value.length === input.maxLength) {
+                            let nextInput = input.nextElementSibling;
                             while (nextInput && nextInput.tagName !== "INPUT") {
                                 nextInput = nextInput.nextElementSibling;
                             }
@@ -112,7 +96,7 @@
             </div>
         </div>
     </div>
-
+    
     <!--Footer de informacion de contacto-->
 
     <footer class="bg-dark text-light pt-5 pb-3 px-5 mt-5 ">
