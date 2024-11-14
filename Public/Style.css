@@ -126,3 +126,6 @@
     color: #ffffff;
     padding-bottom: 5px;
 }
+.carousel-item {
+    transition: transform 1s ease; /* Ajusta el tiempo a tu preferencia */
+    }
