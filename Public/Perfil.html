@@ -7,55 +7,11 @@
     <title>FuelFinderMX - Perfil de usuario</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="Style.css">
 
-    <style>
-        .custom-text {
-            padding-bottom: 5px;
-        }
-
-        /* Fuente y color general */
-        body {
-            font-family: Arial, sans-serif;
-            color: #333;
-        }
-
-        /* Estilos de los cuadros */
-        .custom-height {
-            min-height: 300px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Estilo del título de la sección */
-        .section-title {
-            font-size: 1.8em;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        /* Estilo de subtítulos */
-        .subsection-title {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        /* Párrafos de texto */
-        p {
-            font-size: 1em;
-            margin: 0;
-            line-height: 1.5em;
-        }
-        .divider {
-            border: none;
-            border-top: 1px solid #838181;
-            margin-bottom: -10px;
-            width: 100%;
-        }
-    </style>
 </head>
 
-<body>
+<body class="perfil-body">
 
     <!-- Barra de navegación principal -->
     <nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -86,32 +42,30 @@
         </div>
     </nav>
 
-    <!-- Área de información del usuario y del vehículo -->
     <div class="container mt-5">
         <div class="row">
-            <!-- Columna para el perfil de usuario -->
             <div class="col-md-6">
-                <div class="p-3 border rounded shadow h-100 custom-height">
-                    <h2 class="section-title text-center">Perfil de usuario</h2>
-                    <hr class="divider">
+                <div class="p-3 border rounded shadow h-100 perfil-custom-height">
+                    <h2 class="perfil-section-title text-center">Perfil de usuario</h2>
+                    <hr class="perfil-divider">
                     <div class="row mt-5">
                         <div class="col-md-6">
-                            <h5 class="subsection-title">Datos de usuario</h5>
-                            <p style="font-weight: bold;">Nombre(s):</p>
+                            <h5 class="perfil-subsection-title">Datos de usuario</h5>
+                            <p class="perfil-P">Nombre(s):</p>
                             <p>Juan Pérez</p>
                             <br>
-                            <p style="font-weight: bold;">Apellido(s):</p>
+                            <p class="perfil-P">Apellido(s):</p>
                             <p>Juan Pérez</p>
                             <br>
-                            <p style="font-weight: bold;">Corre electronico:</p>
+                            <p class="perfil-P">Corre electronico:</p>
                             <p>JuanPérez@gmail.com</p>
                         </div>
                         <div class="col-md-6">
-                            <h5 class="subsection-title">Datos de cuenta</h5>
-                            <p style="font-weight: bold;">Contraseña:</p>
+                            <h5 class="perfil-subsection-title">Datos de cuenta</h5>
+                            <p class="perfil-P">Contraseña:</p>
                             <p>********</p>
                             <br>
-                            <p style="font-weight: bold;">Fecha de creación:</p>
+                            <p class="perfil-P">Fecha de creación:</p>
                             <p>2023-02-20</p>
                         </div>
                     </div>
@@ -121,22 +75,22 @@
             <!-- Columna para los datos del vehículo -->
             <div class="col-md-6">
                 <div class="p-3 border rounded shadow h-100 custom-height">
-                    <h2 class="section-title text-center">Datos del vehículo</h2>
+                    <h2 class="perfil-section-title text-center">Datos del vehículo</h2>
                     <hr class="divider">
                     <section>
                         <div class="row mt-5">
                             <div class="col-md-6">
-                                <h5 class="subsection-title" style="padding-bottom: 7px;">Datos del Vehiculo</h5>
-                                <p style="font-weight: bold;">Marca: </p>
+                                <h5 class="perfil-subsection-title" style="padding-bottom: 7px;">Datos del Vehiculo</h5>
+                                <p class="perfil-P">Marca: </p>
                                 <p>Toyota</p>
                                 <br>
-                                <p style="font-weight: bold;">Modelo: </p>
+                                <p class="perfil-P">Modelo: </p>
                                 <p>Corolla</p>
                                 <br>
-                                <p style="font-weight: bold;">año: </p>
+                                <p class="perfil-P">año: </p>
                                 <p>2015</p>
                                 <br>
-                                <p style="font-weight: bold;">Capacidad del tanque</p>
+                                <p class="perfil-P">Capacidad del tanque</p>
                                 <p>35L</p>
                             </div>
                             <div class="col-md-6">
@@ -177,7 +131,7 @@
                     </ul>
                 </div>
                 <div class="col-md-6">
-                    <h5 class=text-left">Redes Sociales</h5>
+                    <h5 class="text-left">Redes Sociales</h5>
                     <br>
                     <ul class="list-unstyled">
                         <li class="custom-text text-left"> <i class="fa-brands fa-facebook"></i> Facebook: <a
