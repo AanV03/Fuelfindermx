@@ -1,7 +1,127 @@
 /*Aqui vamos a meter todos los estilos personalizados*/
 
 
-/*ejemplo:*/
-body{
-    background-color: wheat;
+/*Estilo reporte*/
+
+.bg-custom {
+    background-color: #dadada;
+}
+
+.custom-text {
+    padding-bottom: 5px;
+}
+
+
+/*Estilo del mapa*/
+
+.map-custom-text {
+    padding-bottom: 5px;
+}
+
+.body-map {
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    height: 100vh;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.map-shadow-navbar {
+    box-shadow: 0px 12px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+}
+
+.map-container-fluid,
+.map-row,
+.map-col-9 {
+    padding: 0;
+    margin: 0;
+}
+
+
+.footer-map {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.menu-section {
+    height: 100vh;
+    background-color: white;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.map-section {
+    height: 100vh;
+}
+
+#menu {
+    max-height: 150px;
+    transition: height 0.5s ease;
+}
+
+#menu.expanded {
+    max-height: 300px;
+}
+
+@media (max-width: 768px) {
+    .navbar-collapse {
+
+        border: none;
+        border-top: 2px solid #ddd;
+        margin: 10px 0;
+        width: 100%;
+    }
+}
+
+/*Estilo perfil*/
+
+.perfil-custom-text {
+    padding-bottom: 5px;
+}
+
+/* Fuente y color general */
+.perfil-body {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* Estilos de los cuadros */
+.perfil-custom-height {
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo del título de la sección */
+.perfil-section-title {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Estilo de subtítulos */
+.perfil-subsection-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Párrafos de texto */
+.perfil-P {
+    font-size: 1em;
+    margin: 0;
+    line-height: 1.5em;
+    font-weight: bold;
+}
+.perfil-divider {
+    border: none;
+    border-top: 1px solid #838181;
+    margin-bottom: -10px;
+    width: 100%;
 }
