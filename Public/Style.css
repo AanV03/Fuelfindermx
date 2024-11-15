@@ -129,3 +129,35 @@
 .carousel-item {
     transition: transform 1s ease; /* Ajusta el tiempo a tu preferencia */
     }
+
+/*Modificar datos estilo*/
+
+.datos-custom-height {
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*Iniciar sesion estilo*/
+
+.custom-text {
+    padding-bottom: 5px;
+}
+
+.iniciarS-body {
+    background-image: url(../imagenes/Gasolinera.jpg);
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.iniciarS-divider {
+    border: none;
+    border-top: 1px solid #ddd;
+    /* Color y grosor de la línea */
+    margin: 20px 0;
+    /* Espaciado arriba y abajo de la línea */
+    width: 100%;
+}

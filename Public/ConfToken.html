@@ -7,13 +7,8 @@
     <title>FuelFinderMX - confirmar correo </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
+    <link rel="stylesheet" href="Style.css">
 </head>
-<style>
-    .custom-text {
-        padding-bottom: 5px;
-    }
-</style>
 
 <body>
 
@@ -51,24 +46,29 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <h2 class="text-center">Confirmar correo electrónico</h2>
-                <br>
                 <h6 class="text-center">Ingresa el código que llegó a tu correo electrónico</h6>
                 <br>
                 <form id="TokenForm" novalidate>
                     <div class="form-group">
                         <div class="row justify-content-center" style="display: flex; gap: 5px;">
                             <input type="text" style="width: 45px; height: 60px; font-size: 2em; text-align: center;"
-                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)" required>
+                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)"
+                                required>
                             <input type="text" style="width: 45px; height: 60px; font-size: 2em; text-align: center;"
-                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)" required>
+                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)"
+                                required>
                             <input type="text" style="width: 45px; height: 60px; font-size: 2em; text-align: center;"
-                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)" required>
+                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)"
+                                required>
                             <input type="text" style="width: 45px; height: 60px; font-size: 2em; text-align: center;"
-                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)" required>
+                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)"
+                                required>
                             <input type="text" style="width: 45px; height: 60px; font-size: 2em; text-align: center;"
-                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)" required>
+                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)"
+                                required>
                             <input type="text" style="width: 45px; height: 60px; font-size: 2em; text-align: center;"
-                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)" required>
+                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)"
+                                required>
                         </div>
                         <br>
                         <button type="submit" class="btn btn-dark btn-block">Siguiente</button>
@@ -96,7 +96,7 @@
             </div>
         </div>
     </div>
-    
+
     <!--Footer de informacion de contacto-->
 
     <footer class="bg-dark text-light pt-5 pb-3 px-5 mt-5 ">
@@ -149,15 +149,12 @@
 
             // Validar si el formulario es válido
             if (this.checkValidity()) {
-                alert("¡Gracias por reportar el error! Nuestro equipo lo revisará pronto.");
                 window.location.href = "NewContraseña.html";
             } else {
-                alert("Por favor, complete todos los campos obligatorios.");
+                alert("Por favor, ingrese el token.");
             }
         });
     </script>
 </body>
-
-
 
 </html>
