@@ -111,6 +111,7 @@
     line-height: 1.5em;
     font-weight: bold;
 }
+
 .perfil-divider {
     border: none;
     border-top: 1px solid #838181;
@@ -126,9 +127,11 @@
     color: #ffffff;
     padding-bottom: 5px;
 }
+
 .carousel-item {
-    transition: transform 1s ease; /* Ajusta el tiempo a tu preferencia */
-    }
+    transition: transform 1s ease;
+    /* Ajusta el tiempo a tu preferencia */
+}
 
 /*Modificar datos estilo*/
 
