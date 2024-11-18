@@ -1,22 +1,22 @@
 /*Aqui vamos a meter todos los estilos personalizados*/
 
 
-/*Estilo reporte*/
 
-.bg-custom {
-    background-color: #dadada;
-}
+/*Estilo de texto del footer general*/
 
 .custom-text {
     padding-bottom: 5px;
 }
 
 
-/*Estilo del mapa*/
+/*Estilo personalizado de reporte*/
 
-.map-custom-text {
-    padding-bottom: 5px;
+.bg-custom {
+    background-color: #dadada;
 }
+
+
+/*Estilo Personalizado del mapa*/
 
 .body-map {
     margin: 0;
@@ -79,40 +79,32 @@
     }
 }
 
-/*Estilo perfil*/
 
-.perfil-custom-text {
-    padding-bottom: 5px;
-}
+/*Estilo Personalizado de perfil*/
 
-/* Fuente y color general */
 .perfil-body {
     font-family: Arial, sans-serif;
     color: #333;
 }
 
-/* Estilos de los cuadros */
 .perfil-custom-height {
     min-height: 300px;
     display: flex;
     flex-direction: column;
 }
 
-/* Estilo del título de la sección */
 .perfil-section-title {
     font-size: 1.8em;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
-/* Estilo de subtítulos */
 .perfil-subsection-title {
     font-size: 1.2em;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-/* Párrafos de texto */
 .perfil-P {
     font-size: 1em;
     margin: 0;
@@ -123,5 +115,49 @@
     border: none;
     border-top: 1px solid #838181;
     margin-bottom: -10px;
+    width: 100%;
+}
+
+
+/*Estilo Personalizado de inicio*/
+
+.inicio-custom-text {
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    padding-bottom: 5px;
+}
+.carousel-item {
+    transition: transform 1s ease; /* Ajusta el tiempo a tu preferencia */
+    }
+
+/*Modificar datos estilo*/
+
+.datos-custom-height {
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*Iniciar sesion estilo*/
+
+.custom-text {
+    padding-bottom: 5px;
+}
+
+.iniciarS-body {
+    background-image: url(../imagenes/Gasolinera.jpg);
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.iniciarS-divider {
+    border: none;
+    border-top: 1px solid #ddd;
+    /* Color y grosor de la línea */
+    margin: 20px 0;
+    /* Espaciado arriba y abajo de la línea */
     width: 100%;
 }
