@@ -38,7 +38,6 @@
                     <a class="nav-link" style="color: rgb(0, 0, 0);" href="IniciarSesion.html">Iniciar sesion</a>
                 </li>
             </ul>
-               
         </div>
     </nav>
 
@@ -74,29 +73,37 @@
 
             <!-- Columna para los datos del vehículo -->
             <div class="col-md-6">
-                <div class="p-3 border rounded shadow h-100 custom-height">
-                    <h2 class="perfil-section-title text-center">Datos del vehículo</h2>
-                    <hr class="divider">
-                    <section>
-                        <div class="row mt-5">
-                            <div class="col-md-6">
-                                <h5 class="perfil-subsection-title" style="padding-bottom: 7px;">Datos del Vehiculo</h5>
-                                <p class="perfil-P">Marca: </p>
-                                <p>Toyota</p>
-                                <br>
-                                <p class="perfil-P">Modelo: </p>
-                                <p>Corolla</p>
-                                <br>
-                                <p class="perfil-P">año: </p>
-                                <p>2015</p>
-                                <br>
-                                <p class="perfil-P">Capacidad del tanque</p>
+                <div class="p-3 border rounded shadow h-100 perfil-custom-height">
+                    <h2 class="perfil-section-title text-center">Datos de vehículo</h2>
+                    <hr class="perfil-divider">
+                    <div class="row mt-5">
+                        <!-- Columna izquierda: Información del vehículo -->
+                        <div class="col-md-6">
+                            <h5 class="perfil-subsection-title" style="padding-bottom: 5px;">Datos del Vehículo</h5>
+                            <p class="perfil-P">Marca: </p>
+                            <p>Toyota</p>
+                            <br>
+                            <p class="perfil-P">Modelo: </p>
+                            <p>Corolla</p>
+                            <br>
+                            <p class="perfil-P">Año: </p>
+                            <p>2015</p>
+                        </div>
+                        <!-- Columna derecha: Imagen y capacidad del tanque -->
+                        <div class="col-md-6 d-flex flex-column align-items-center">
+                            <!-- Imagen del vehículo -->
+                             <br><br>
+                            <img src="../imagenes/carro.png" class="img-fluid mb-auto" alt="Vehículo" style="max-width: 90%; height: auto;">
+                            
+                            <!-- Capacidad del tanque, alineado con el subtítulo Año -->
+                            <div>
+                                <p class="perfil-P">Capacidad del tanque:</p>
                                 <p>35L</p>
                             </div>
-                            <div class="col-md-6">
-                                <img src="../imagenes/carro.png" class="img-fluid" alt="Vehículo" style="max-width: 90%; height: auto;">
-                            </div>
                         </div>
+                    </div>
+                </div>
+            </div>            
                     </section>
                 </div>
             </div>
