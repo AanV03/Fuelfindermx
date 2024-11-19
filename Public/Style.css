@@ -133,6 +133,7 @@
     /* Ajusta el tiempo a tu preferencia */
 }
 
+
 /*Modificar datos estilo*/
 
 .datos-custom-height {
@@ -163,4 +164,13 @@
     margin: 20px 0;
     /* Espaciado arriba y abajo de la línea */
     width: 100%;
+}
+
+/*Estilo tokens*/
+
+.input-token {
+    width: 45px;
+    height: 60px;
+    font-size: 2em;
+    text-align: center;
 }

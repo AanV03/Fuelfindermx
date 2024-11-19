@@ -54,29 +54,24 @@
                 <form id="TokenForm" novalidate>
                     <div class="form-group">
                         <div class="row justify-content-center" style="display: flex; gap: 5px;">
-                            <input type="text" style="width: 45px; height: 60px; font-size: 2em; text-align: center;"
-                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)"
+                            <input type="text" class="input-token" maxlength="1" inputmode="numeric" pattern="[0-9]*"
                                 required>
-                            <input type="text" style="width: 45px; height: 60px; font-size: 2em; text-align: center;"
-                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)"
+                            <input type="text" class="input-token" maxlength="1" inputmode="numeric" pattern="[0-9]*"
                                 required>
-                            <input type="text" style="width: 45px; height: 60px; font-size: 2em; text-align: center;"
-                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)"
+                            <input type="text" class="input-token" maxlength="1" inputmode="numeric" pattern="[0-9]*"
                                 required>
-                            <input type="text" style="width: 45px; height: 60px; font-size: 2em; text-align: center;"
-                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)"
+                            <input type="text" class="input-token" maxlength="1" inputmode="numeric" pattern="[0-9]*"
                                 required>
-                            <input type="text" style="width: 45px; height: 60px; font-size: 2em; text-align: center;"
-                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)"
+                            <input type="text" class="input-token" maxlength="1" inputmode="numeric" pattern="[0-9]*"
                                 required>
-                            <input type="text" style="width: 45px; height: 60px; font-size: 2em; text-align: center;"
-                                maxlength="1" inputmode="numeric" pattern="[0-9]*" oninput="validateAndMoveFocus(this)"
+                            <input type="text" class="input-token" maxlength="1" inputmode="numeric" pattern="[0-9]*"
                                 required>
                         </div>
                         <br>
                         <button type="submit" class="btn btn-dark btn-block">Siguiente</button>
                     </div>
                 </form>
+
                 <script>
                     function validateAndMoveFocus(input) {
                         // Si el valor no es un número, borra el carácter
@@ -114,7 +109,9 @@
                             if (previousInput) {
                                 previousInput.focus();
                                 // Colocar el cursor al inicio del campo anterior
-                                previousInput.setSelectionRange(0, 0);
+                                setTimeout(() => {
+                                    previousInput.setSelectionRange(0, 0); // Coloca el cursor al inicio
+                                }, 0);
                             }
                         }
                     }
@@ -148,7 +145,7 @@
                                 // Aquí puedes agregar la lógica de verificación del token (API, etc.)
                                 window.location.href = "NewContraseña.html"; // Redirigir a la siguiente página si el token es válido
                             } else {
-                                alert("Por favor, ingrese un token válido.");
+                                alert(" Por favor, ingrese un token válido.");
                             }
                         });
                     });
