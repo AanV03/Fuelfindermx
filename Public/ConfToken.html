@@ -94,6 +94,63 @@
                             }
                         }
                     }
+
+                    // Función para manejar el cambio de foco con las flechas del teclado
+                    function handleKeyDown(event, input) {
+                        if (event.key === "ArrowRight") {
+                            let nextInput = input.nextElementSibling;
+                            while (nextInput && nextInput.tagName !== "INPUT") {
+                                nextInput = nextInput.nextElementSibling;
+                            }
+                            if (nextInput) {
+                                nextInput.focus();
+                            }
+                        } else if (event.key === "ArrowLeft") {
+                            let previousInput = input.previousElementSibling;
+                            while (previousInput && previousInput.tagName !== "INPUT") {
+                                previousInput = previousInput.previousElementSibling;
+                            }
+                            if (previousInput) {
+                                previousInput.focus();
+                                // Colocar el cursor al inicio del campo anterior
+                                previousInput.setSelectionRange(0, 0);
+                            }
+                        }
+                    }
+
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const tokenInputs = document.querySelectorAll('input[type="text"]');
+                        tokenInputs.forEach(input => {
+                            input.addEventListener("input", function () {
+                                validateAndMoveFocus(input);
+                            });
+
+                            // Agregar el evento keydown para manejar las flechas
+                            input.addEventListener("keydown", function (event) {
+                                handleKeyDown(event, input);
+                            });
+                        });
+
+                        // Manejo del formulario cuando se envía
+                        document.getElementById("TokenForm").addEventListener("submit", function (e) {
+                            e.preventDefault(); // Prevenir que el formulario se envíe tradicionalmente
+
+                            // Obtener el código ingresado por el usuario
+                            let token = "";
+                            tokenInputs.forEach(input => {
+                                token += input.value;
+                            });
+
+                            // Verificar si el token tiene la longitud esperada (6 dígitos)
+                            if (token.length === 6) {
+                                console.log("Token ingresado: " + token);
+                                // Aquí puedes agregar la lógica de verificación del token (API, etc.)
+                                window.location.href = "NewContraseña.html"; // Redirigir a la siguiente página si el token es válido
+                            } else {
+                                alert("Por favor, ingrese un token válido.");
+                            }
+                        });
+                    });
                 </script>
             </div>
         </div>
