@@ -1,7 +1,5 @@
-// script.js
-
 /* Script de Reporte */
-// Mostrar un mensaje de agradecimiento y redirigir al inicio
+
 document.getElementById("reportForm").addEventListener("submit", function (e) {
     e.preventDefault(); // Prevenir que el formulario se envíe tradicionalmente
 
