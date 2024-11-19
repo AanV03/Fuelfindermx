@@ -82,11 +82,6 @@
 
 /*Estilo Personalizado de perfil*/
 
-.perfil-body {
-    font-family: Arial, sans-serif;
-    color: #333;
-}
-
 .perfil-custom-height {
     min-height: 300px;
     display: flex;
@@ -153,8 +148,11 @@
     background-image: url(../imagenes/Gasolinera.jpg);
     background-size: cover;
     background-position: center;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
+    overflow-x: hidden; /* Asegura que no haya desplazamiento horizontal */
+    margin: 0; /* Elimina posibles márgenes que causen desplazamiento */
+    padding: 0;
 }
 
 .iniciarS-divider {
