@@ -1,14 +1,18 @@
+from flask import Flask
 import pyodbc
+
+app=Flask(__name__)
 
 # Configuración de conexión con Azure SQL Database
 server = 'mi-servidor.database.windows.net'
-database = 'nombre_base_datos'
-username = 'mi_usuario'
-password = 'mi_contraseña'
-driver = '{ODBC Driver 18 for SQL Server}'
+database = 'fuelfindermx.database.windows.net'
+username = 'fuelfinderadmin'
+password = 'Automovil21'
+driver = '{ODBC Driver 17 for SQL Server}'
 encrypt = 'yes'
 trust_server_certificate = 'yes'
 
+@app.route("/sql")
 def obtener_conexion():
     """Establece conexión segura con Azure SQL Database."""
     try:
@@ -20,3 +24,7 @@ def obtener_conexion():
     except Exception as e:
         print("Error al conectar con Azure SQL Database:", e)
         return None
+
+    
+if __name__ == '__main__':
+    app.run(debug=True)
