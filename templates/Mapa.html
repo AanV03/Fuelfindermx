@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FuelFinderMX - Mapa</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!--Estilo en css personalizado-->
+    <style>
+        .custom-text {
+            padding-bottom: 5px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            height: 100vh;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .shadow-navbar {
+            box-shadow: 0px 12px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 10px;
+        }
+
+        .container-fluid,
+        .row,
+        .col-9 {
+            padding: 0;
+            margin: 0;
+        }
+
+
+        .footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .menu-section {
+            height: 100vh;
+            background-color: white;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .map-section {
+            height: 100vh;
+        }
+
+        #menu {
+            max-height: 150px;
+            transition: height 0.5s ease;
+        }
+
+        #menu.expanded {
+            max-height: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-collapse {
+    
+            border: none;
+            border-top: 2px solid #ddd;
+            /* Color y grosor de la línea */
+            margin: 10px 0; 
+            /* Espaciado arriba y abajo de la línea */
+            width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Barra de navegación principal -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="#">FuelFinderMX</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" style="color: rgb(0, 0, 0);" href="Inicio.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: rgb(0, 0, 0);" href="Mapa.html">Mapa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: rgb(0, 0, 0);" href="Gasolineras.html">Precios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: rgb(0, 0, 0);" href="Perfil.html">Perfil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: rgb(0, 0, 0);" href="IniciarSesion.html">Iniciar sesion</a>
+                </li>
+            </ul>
+        
+        </div>
+        
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row no-gutters">
+            <!-- Botón de hamburguesa, visible solo en pantallas pequeñas -->
+            <div class="col-12 d-md-none p-2">
+                <button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#menu" aria-expanded="false" aria-controls="menu">
+                    ☰ Menú
+                </button>
+            </div>
+            <!-- Sección del menú -->
+            <div class="col-md-3 collapse d-md-block" id="menu">
+                <div class="menu-section bg-light">
+                    <div class="list-group">
+                        <a href="Gasolineras.html" class="list-group-item list-group-item-action">
+                            <i class="fas fa-map-marker-alt"></i> Ubicaciones
+                        </a>
+                        <a href="Perfil.html" class="list-group-item list-group-item-action">
+                            <i class="fas fa-cog"></i> Auto
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Sección del mapa -->
+            <div class="col-12 col-md-9 main-content">
+                <div id="map"></div>
+                <script
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNk_qmynnpmxNQveb4aVqV1LZ6UTwg7Nw&callback=initMap"
+                    async defer></script>
+                <script>
+                  let map;
+
+function initMap() {
+    const centro = { lat: 28.6757, lng: -106.1008 }; // Coordenadas iniciales
+
+    // Inicializa el mapa
+    map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 10,
+        center: centro
+    });
+
+    // Carga los datos de ubicaciones desde la API
+    fetch("http://127.0.0.1:5000/api/ubicaciones?formato=json")
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(place => {
+                        const lat = parseFloat(place.x);
+                        const lng = parseFloat(place.y);
+                        const name = place.name;
+                        const id = place.place_id;
+
+                        // Crear marcador para cada ubicación
+                        const marker = new google.maps.Marker({
+                            position: { lat, lng },
+                            map: map,
+                            title: name,
+                        });
+
+                        // Agregar un evento al marcador para mostrar los precios
+                        marker.addListener("click", () => {
+
+                            fetch(`http://127.0.0.1:5000/api/precios?formato=json`)
+                                .then(response => response.json())
+                                .then(priceData => {
+                                    // Buscar los precios para el `cre_id` correspondiente
+                                    //console.log(priceData)
+                                    
+                                    //priceData[0].place_id
+                                    //console.log(priceData); // Esto te mostrará la estructura completa de priceData
+                                    
+                                    console.log("Datos recibidos:", priceData);
+
+                                    const id = place.place_id;
+
+                                    const placePrices = priceData.find(p => p.place_id == id);
+
+if (placePrices) {
+    let content = `<h3>${name}</h3><ul>`;
+    placePrices.prices.forEach(price => {
+        content += `<li>${price.type}: ${price.price} MXN</li>`;
+    });
+    content += `</ul>`;
+
+    const infoWindow = new google.maps.InfoWindow({
+        content,
+    });
+    infoWindow.open(map, marker);
+} else {
+    console.warn(`El ID ${id} no tiene precios disponibles.`);
+    alert("No hay precios disponibles para esta ubicación.");
+}
+        })
+        .catch(error => {
+            console.error("Error al cargar los datos de precios:", error);
+        });
+});
+
+                                   
+                                });
+                            
+                        });
+                    };
+                
+                
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <!--Footer de informacion de contacto-->
+
+    <footer class="bg-dark text-light pt-5 pb-3 px-5 mt-5 ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="text-left">Contacto</h5>
+                    <br>
+                    <ul class="list-unstyled">
+                        <li class="custom-text text-left"><i class="fa-solid fa-map"></i> Direccion: <a
+                                href="https://maps.app.goo.gl/v59XQ16W5ncPVQXx8">Km 3.5 Carretera
+                                Chihuahua a Aldama Colinas de León, 31313, 31300 Chihuahua, Chihuahua · 06 km</a>
+                        </li>
+                        <li class="custom-text text-left"><i class="fa-solid fa-envelope"></i> Email 1: <a
+                                href="mailto:fuelfindermx@outlook.com">fuelfindermx@outlook.com</a>
+                        </li>
+                        <li class="custom-text text-left"><i class="fa-solid fa-envelope"></i> Email 2: <a
+                                href="mailto:fuelfindermx@gmail.com">fuelfindermx@gmail.com</a>
+                        </li>
+                        <li class="custom-text text-left"><i class="fa-solid fa-phone"></i> Teléfono: 614-552-0929</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5 class=text-left">Redes Sociales</h5>
+                    <br>
+                    <ul class="list-unstyled">
+                        <li class="custom-text text-left"> <i class="fa-brands fa-facebook"></i> Facebook: <a
+                                href="https://www.facebook.com/profile.php?id=61568152538733">FuelFinderMX</a>
+                        </li>
+                        <li class="custom-text text-left"> <i class="fa-brands fa-instagram"></i> Instagram: <a
+                                href="https://www.instagram.com/fuelfindermx/">FuelFinderMX</a>
+                        </li>
+                        <li class="custom-text text-left"><i class="fa-brands fa-whatsapp"></i> Whatsapp Business: <a
+                                href="https://wa.me/526145520929">FuelFinderMX</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
