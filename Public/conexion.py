@@ -7,7 +7,7 @@ username = 'mi_usuario'
 password = 'mi_contraseña'
 driver = '{ODBC Driver 18 for SQL Server}'
 encrypt = 'yes'
-trust_server_certificate = 'no'
+trust_server_certificate = 'yes'
 
 def obtener_conexion():
     """Establece conexión segura con Azure SQL Database."""
