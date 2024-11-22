@@ -1,13 +1,15 @@
-from flask import Flask, jsonify, request, Response, render_template, redirect, url_for
+from flask import Flask, jsonify, request, Response, render_template, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash
-from conexion import obtener_conexion  # Importar la función de conexión
+from models.Perfil_utils  import obtener_datos_usuario, obtener_datos_vehiculos  # Importar las funciones
+from models.Registro_utils import registrar_usuario  # Importar la función para registrar usuarios
 import xml.etree.ElementTree as ET
 import xmltodict
 import json
 
 app=Flask(__name__)
+app.secret_key = "tu_secreto"
 
-@app.route('/')
+@app.route('/Mapa')
 def index():
     return render_template('mapa.html')
 
@@ -17,8 +19,6 @@ def xml_data():
         xml_data = archivo.read()
         diccionario = xmltodict.parse(xml_data)
     return diccionario
-
-
 
 #Extrae la informacion y la muestra. Lugares
 @app.route('/api/ubicaciones', methods=['GET'])
@@ -87,62 +87,96 @@ def precios():
     else:
         return jsonify({"error": "Formato no soportado"}), 400
 
+
 @app.route('/IniciarSesion')
 def iniciar_sesion():
     return render_template('IniciarSesion.html')
 
+@app.route('/Inicio')
+def inicio():
+    return render_template('Inicio.html')
+
+@app.route('/ConfEmail')
+def Conf_Email():
+    return render_template('ConfEmail.html')
+
+@app.route('/ConfToken')
+def Conf_token():
+    return render_template('ConfToken.html')
 
 
-
-
-
-
-@app.route('/create-account', methods=['GET', 'POST'])
+@app.route('/CreateAcc', methods=['GET', 'POST'])
 def create_account():
     if request.method == 'POST':
         # Obtener datos del formulario
         nombre = request.form.get('nombre')
-        apellido = request.form.get('apellido')
+        apellido = request.form.get('apellido')  # Incluimos el apellido
         email = request.form.get('email')
         contraseña = request.form.get('contraseña')
-        confirmar_contraseña = request.form.get('confirmar_contraseña')
+        confirmar_contraseña = request.form.get('confirmar-contraseña')
 
-        # Validar contraseñas
-        if contraseña != confirmar_contraseña:
-            return "Las contraseñas no coinciden. Por favor, inténtalo de nuevo.", 400
+        # Usar la función registrar_usuario para manejar la lógica de registro
+        resultado, codigo_error = registrar_usuario(nombre, apellido, email, contraseña, confirmar_contraseña)
 
-        # Cifrar la contraseña
-        contraseña_cifrada = generate_password_hash(contraseña)
-
-        # Guardar los datos en la base de datos
-        try:
-            conexion = obtener_conexion()  # Usar la función del archivo conexion.py
-            if conexion is None:
-                return "No se pudo establecer conexión con la base de datos.", 500
-
-            with conexion.cursor() as cursor:
-                query = """
-                INSERT INTO Usuarios (Nombre, Apellido, Email, Contraseña)
-                VALUES (?, ?, ?, ?)
-                """
-                cursor.execute(query, (nombre, apellido, email, contraseña_cifrada))
-                conexion.commit()
-
+        # Si la cuenta se creó exitosamente, redirigir a la página de éxito
+        if codigo_error == 200:
             return redirect(url_for('success'))
-        except Exception as e:
-            return f"Error al guardar los datos: {e}", 500
-        finally:
-            if conexion:
-                conexion.close()
+
+        # Si hubo un error, mostrar el mensaje de error
+        flash(resultado, 'danger')
+        return render_template('CreateAcc.html')
 
     return render_template('CreateAcc.html')
 
+@app.route('/success')
+def success():
+    return "Cuenta creada exitosamente."
 
 
+@app.route('/Gasolineras')
+def Gasolineras():
+    return render_template('Gasolineras.html')
+
+@app.route('/ModDatos')
+def Mod_Datos():
+    return render_template('ModDatos.html')
+
+@app.route('/NewContraseña')
+def New_Contraseña():
+    return render_template('NewContraseña.html')
 
 
-
+#funcion para obtener datos de la base de datos para perfil
+@app.route('/Perfil')
+def perfil():
+    # Verifica si hay una sesión activa
+    if 'user_id' not in session:
+        flash("No estás logueado", 'danger')
+        return redirect(url_for('iniciar_sesion'))  # Redirige a la página de inicio de sesión
     
+    user_id = session['user_id']
+
+    try:
+        # Obtener los datos del usuario y los vehículos
+        user_data = obtener_datos_usuario(user_id)
+        if user_data is None:
+            flash("Usuario no encontrado", 'danger')
+            return redirect(url_for('inicio'))  # Redirige a la página principal si no se encuentra el usuario
+
+        vehicle_data = obtener_datos_vehiculos(user_id)
+
+    except Exception as e:
+        flash(f"Ocurrió un error al cargar tu perfil: {e}", 'danger')
+        return redirect(url_for('inicio'))  # Redirige en caso de error
+
+    # Renderiza el HTML con los datos obtenidos
+    return render_template('Perfil.html', user=user_data, vehicles=vehicle_data)
+
+
+@app.route('/Reporte')
+def Reporte():
+    return render_template('Reporte.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
 
