@@ -161,26 +161,29 @@ def Conf_token():
 
 @app.route('/CreateAcc', methods=['GET', 'POST'])
 def create_account():
-    if request.args.get('nombre'):
+    if request.method == 'POST':
+        print('Solicitud POST recibida')
         # Obtener datos del formulario
-        nombre = request.args.get('nombre')
+        nombre = request.form.get('nombre')
         apellido = request.form.get('apellido')  # Incluimos el apellido
         email = request.form.get('email')
         contraseña = request.form.get('contraseña')
         confirmar_contraseña = request.form.get('confirmar-contraseña')
 
         # Usar la función registrar_usuario para manejar la lógica de registro
-        resultado, codigo_error = registrar_usuario(nombre, apellido, email, contraseña, confirmar_contraseña)
+        resultado = registrar_usuario(nombre, apellido, email, contraseña, confirmar_contraseña)
+        print(resultado)
 
         # Si la cuenta se creó exitosamente, redirigir a la página de éxito
-        if codigo_error == 200:
+        if resultado == 200:
             return redirect(url_for('success'))
 
         # Si hubo un error, mostrar el mensaje de error
         flash(resultado, 'danger')
         return render_template('CreateAcc.html')
     else:
-        print('no entre ', request.args.get('nombre'))
+        print('Solicitud GET recibida')
+        print('no entre ', request.form.get('nombre'))
 
     return render_template('CreateAcc.html')
 
