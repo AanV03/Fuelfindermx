@@ -75,7 +75,88 @@
     </section>
     <br>
 
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">¡Al dia de hoy!</h1>
+        <div class="row justify-content-center">
+            <!-- Precio más bajo -->
+            <div id="mas-bajo" class="col-md-5 p-3 border rounded shadow h-100">
+                <h2 class="text-center">Precio más bajo</h2>
+                <div class="text-center">
+                    <img id="img-mas-bajo" src="" alt="Gasolinera" class="img-fluid mb-3">
+                </div>
+                <p><strong>Nombre:</strong> <span id="nombre-bajo"></span></p>
+                <p><strong>Precio Regular:</strong> $<span id="precio-bajo"></span></p>
+                <p><strong>Ubicación:</strong> <span id="ubicacion-bajo"></span></p>
+            </div>
+
+            <div class="col-md-1"></div>
+
+            <!-- Precio más alto -->
+            <div id="mas-alto" class="col-md-5 p-3 border rounded shadow h-100">
+                <h2 class="text-center">Precio más alto</h2>
+                <div class="text-center">
+                    <img id="img-mas-alto" src="" alt="Gasolinera" class="img-fluid mb-3">
+                </div>
+                <p><strong>Nombre:</strong> <span id="nombre-alto"></span></p>
+                <p><strong>Precio Regular:</strong> $<span id="precio-alto"></span></p>
+                <p><strong>Ubicación:</strong> <span id="ubicacion-alto"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // URL del endpoint de tu API
+        const apiUrl = "http://127.0.0.1:5000/api/precios-ubicaciones";
+
+        // Función para formatear la ubicación
+        const formatLocation = (x, y) => ` (${x.toFixed(4)}, ${y.toFixed(4)})`;
+
+        // Función principal para cargar datos
+        async function cargarDatos() {
+            try {
+                // Fetch a la API
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error(`Error en la API: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                // Elementos HTML
+                const masBajoNombre = document.getElementById('nombre-bajo');
+                const masBajoPrecio = document.getElementById('precio-bajo');
+                const masBajoUbicacion = document.getElementById('ubicacion-bajo');
+                const masBajoImagen = document.getElementById('img-mas-bajo');
+
+                const masAltoNombre = document.getElementById('nombre-alto');
+                const masAltoPrecio = document.getElementById('precio-alto');
+                const masAltoUbicacion = document.getElementById('ubicacion-alto');
+                const masAltoImagen = document.getElementById('img-mas-alto');
+
+                // Datos del precio más bajo
+                const masBajo = data.mas_bajo;
+                masBajoNombre.textContent = masBajo.name;
+                masBajoPrecio.textContent = masBajo.prices.find(p => p.type === "Regular").price.toFixed(2);
+                masBajoUbicacion.textContent = formatLocation(masBajo.x, masBajo.y);
+                masBajoImagen.src = "gasolinera1.jpg"; // Cambia según tu lógica
+
+                // Datos del precio más alto
+                const masAlto = data.mas_alto;
+                masAltoNombre.textContent = masAlto.name;
+                masAltoPrecio.textContent = masAlto.prices.find(p => p.type === "Regular").price.toFixed(2);
+                masAltoUbicacion.textContent = formatLocation(masAlto.x, masAlto.y);
+                masAltoImagen.src = "gasolinera2.jpg"; // Cambia según tu lógica
+            } catch (error) {
+                console.error("Error al cargar los datos:", error);
+            }
+        }
+
+        // Ejecutar la función al cargar la página
+        window.onload = cargarDatos;
+    </script>
+
     <!--Area de contenido principal-->
+    <br>
     <section class="container">
         <h2 class="text-left mt-6">Sobre Nosotros</h2>
         <div class="container mt-5">

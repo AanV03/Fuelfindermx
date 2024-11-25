@@ -91,6 +91,56 @@ def precios():
     else:
         return jsonify({"error": "Formato no soportado"}), 400
 
+@app.route('/api/precios-ubicaciones', methods=['GET'])
+def precios_ubicaciones():
+    formato = request.args.get('formato', 'json')
+
+    # Llamar directamente a las funciones que procesan los datos
+    ubicaciones = gasolineras().json  # Utiliza la función del endpoint
+    precios_data = xml_precios()  # Procesa directamente el XML
+
+    # Extraer precios desde el XML procesado
+    precios = []
+    for place in precios_data['places']['place']:
+        place_info = {
+            "place_id": place["@place_id"],
+            "prices": [
+                {
+                    "type": gas.get("@type"),
+                    "price": float(gas.get("#text", 0))
+                }
+                for gas in place.get("gas_price", [])
+            ]
+        }
+        precios.append(place_info)
+
+    # Combinar los datos por place_id
+    estaciones = []
+    for ubicacion in ubicaciones:
+        precios_relacionados = next((p for p in precios if p["place_id"] == ubicacion["place_id"]), None)
+        if precios_relacionados:
+            estaciones.append({
+                **ubicacion,
+                "prices": precios_relacionados["prices"]
+            })
+
+    # Calcular precio más bajo y más alto
+    mas_bajo = min(estaciones, key=lambda x: next((p["price"] for p in x["prices"] if p["type"] == "Regular"), float('inf')))
+    mas_alto = max(estaciones, key=lambda x: next((p["price"] for p in x["prices"] if p["type"] == "Regular"), float('-inf')))
+
+    # Construir respuesta
+    resultado = {
+        "estaciones": estaciones,
+        "mas_bajo": mas_bajo,
+        "mas_alto": mas_alto
+    }
+
+    # Respuesta en JSON o XML
+    if formato == 'json':
+        return jsonify(resultado)
+    else:
+        return jsonify({"error": "Formato no soportado"}), 400
+
 
 @app.route('/IniciarSesion')
 def iniciar_sesion():
