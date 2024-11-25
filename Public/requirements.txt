@@ -3,3 +3,12 @@ fastapi
 uvicorn[standard]
 pydantic
 azure-identity
+flask
+jsonify
+request
+Response
+render_template
+redirect
+url_for
+session
+flash
