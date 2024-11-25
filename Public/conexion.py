@@ -1,8 +1,9 @@
 import pyodbc
 
 # Datos de conexión (puedes considerar cargarlos desde un archivo .env)
-server = 'mi-servidor.database.windows.net'
-database = 'fuelfindermx.database.windows.net'
+server = 'fuelfindermx.database.windows.net'
+database = 'fuelfinder'
+PORT = '1433'
 username = 'fuelfinderadmin'
 password = 'Automovil21'
 driver = '{ODBC Driver 17 for SQL Server}'
@@ -13,7 +14,7 @@ def obtener_conexion():
     """Establece conexión segura con Azure SQL Database."""
     try:
         conexion = pyodbc.connect(
-            f'DRIVER={driver};SERVER={server};PORT=1433;DATABASE={database};UID={username};PWD={password};Encrypt={encrypt};TrustServerCertificate={trust_server_certificate}'
+            f'DRIVER={driver};SERVER={server};PORT={PORT};DATABASE={database};UID={username};PWD={password};Encrypt={encrypt};TrustServerCertificate={trust_server_certificate}'
         )
         print("Conexión exitosa a Azure SQL Database.")
         return conexion

@@ -9,6 +9,10 @@ import json
 app=Flask(__name__)
 app.secret_key = "tu_secreto"
 
+@app.route('/')
+def inicioandindex():
+    return render_template('inicio.html')
+
 @app.route('/Mapa')
 def index():
     return render_template('mapa.html')
@@ -107,9 +111,9 @@ def Conf_token():
 
 @app.route('/CreateAcc', methods=['GET', 'POST'])
 def create_account():
-    if request.method == 'POST':
+    if request.args.get('nombre'):
         # Obtener datos del formulario
-        nombre = request.form.get('nombre')
+        nombre = request.args.get('nombre')
         apellido = request.form.get('apellido')  # Incluimos el apellido
         email = request.form.get('email')
         contraseña = request.form.get('contraseña')
@@ -125,6 +129,8 @@ def create_account():
         # Si hubo un error, mostrar el mensaje de error
         flash(resultado, 'danger')
         return render_template('CreateAcc.html')
+    else:
+        print('no entre ', request.args.get('nombre'))
 
     return render_template('CreateAcc.html')
 
