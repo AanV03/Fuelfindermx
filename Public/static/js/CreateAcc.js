@@ -49,6 +49,7 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
             e.preventDefault(); // Bloquea el carácter no permitido
         }
     });
+
     // Validación específica: apellido
     apellidoField.addEventListener("input", () => {
         const apellidoPattern = /^[A-Za-zÁáÉéÍíÓóÚúÑñ ]+$/; // Solo letras y espacios
@@ -63,7 +64,6 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
         }
     });
 
-
     // Validación específica: correo electrónico
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailPattern.test(emailField.value)) {
@@ -72,22 +72,48 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
         allValid = false;
     }
 
-    // Validación de contraseñas
-    if (contraseñaField.value.trim().length < 6) {
-        contraseñaField.classList.add("is-invalid");
-        document.getElementById("contraseñaError").textContent = "La contraseña debe tener al menos 6 caracteres.";
-        allValid = false;
+    // Validación dinámica de contraseñas con mensajes dinámicos
+    const contraseñaPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const contraseñaError = document.getElementById("contraseñaError");
+
+    let contraseñaErrorMessage = "";
+
+    if (contraseñaField.value.length < 8) {
+        contraseñaErrorMessage += "Debe tener al menos 8 caracteres. ";
+    }
+    if (!/[A-Z]/.test(contraseñaField.value)) {
+        contraseñaErrorMessage += "Debe contener al menos una letra mayúscula. ";
+    }
+    if (!/[a-z]/.test(contraseñaField.value)) {
+        contraseñaErrorMessage += "Debe contener al menos una letra minúscula. ";
+    }
+    if (!/\d/.test(contraseñaField.value)) {
+        contraseñaErrorMessage += "Debe contener al menos un número. ";
+    }
+    if (!/[@$!%*?&]/.test(contraseñaField.value)) {
+        contraseñaErrorMessage += "Debe contener al menos un símbolo especial (@$!%*?&). ";
     }
 
+    if (contraseñaErrorMessage) {
+        contraseñaField.classList.add("is-invalid");
+        contraseñaError.textContent = contraseñaErrorMessage;
+        allValid = false;
+    } else {
+        contraseñaField.classList.remove("is-invalid");
+        contraseñaError.textContent = "";
+    }
+
+    // Validación de contraseñas coincidentes
     if (contraseñaField.value !== confirmarContraseñaField.value) {
         confirmarContraseñaField.classList.add("is-invalid");
         document.getElementById("confirmarContraseñaError").textContent = "Las contraseñas no coinciden.";
         allValid = false;
     }
 
+    // Si todos los campos son válidos, puedes proceder
     if (allValid) {
         alert("¡Gracias por registrarse! Será redirigido al inicio.");
-        window.location.href = "Inicio";
+        window.location.href = "CreateAcc";  // Redirige a la página de éxito o al inicio
     } else {
         alert("Por favor, corrija los errores.");
     }

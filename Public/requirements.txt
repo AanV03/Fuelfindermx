@@ -3,8 +3,8 @@ fastapi
 uvicorn[standard]
 pydantic
 azure-identity
-Flask
-jsonify 
+flask
+jsonify
 request
 Response
 render_template
