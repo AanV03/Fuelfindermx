@@ -37,7 +37,7 @@ form.addEventListener("submit", function (e) {
 
     // Si todo es correcto, continuar
     alert("¡Se registró correctamente!");
-    window.location.href = "ConfToken";
+    window.location.href = "NewContraseña";
 });
 
 // Validación de formato del correo electrónico
