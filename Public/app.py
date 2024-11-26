@@ -18,9 +18,11 @@ from models.Registro_utils import (
     registrar_usuario,
 )  # Importar la función para registrar usuarios
 from models.NewContraseña_utils import actualizar_contraseña
-from models.Correo_utils import enviar_correo
+#from models.Correo_utils import enviar_correo
 import xml.etree.ElementTree as ET
 import xmltodict, json, uuid
+import bcrypt
+from conexion import obtener_conexion
 
 
 app = Flask(__name__)
@@ -175,29 +177,61 @@ def precios_ubicaciones():
         return jsonify({"error": "Formato no soportado"}), 400
 
 
-@app.route("/IniciarSesion")
+@app.route("/IniciarSesion", methods=['GET','POST'])
 def iniciar_sesion():
-    return render_template("IniciarSesion.html")
+   if request.method == 'POST':
+        # Obtener datos del formulario
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        # Verificar si el usuario existe en la base de datos
+        conn = get_db_connection()  # Tu función de conexión
+        cursor = conn.cursor()
+
+        try:
+            # Consulta para obtener el hash de la contraseña basado en el email
+            cursor.execute("SELECT password_hash FROM usuarios WHERE email = ?", (email,))
+            result = cursor.fetchone()
+
+            if result:
+                stored_password_hash = result[0]  # Hash almacenado
+
+                # Comparar la contraseña ingresada con el hash
+                if bcrypt.checkpw(password.encode('utf-8'), stored_password_hash.encode('utf-8')):
+                    # Si es válida, guardar el inicio de sesión en la sesión
+                    session['user'] = email
+                    flash('Inicio de sesión exitoso', 'success')
+                    return redirect(url_for('dashboard'))  # Cambia 'dashboard' por tu ruta principal
+                else:
+                    flash('Contraseña incorrecta', 'danger')
+            else:
+                flash('El correo no está registrado', 'danger')
+        except Exception as e:
+            print(f"Error al verificar el inicio de sesión: {e}")
+            flash('Ocurrió un error. Inténtalo de nuevo.', 'danger')
+        finally:
+            conn.close()
+
+    # Renderiza el formulario de inicio de sesión si es un GET o si hubo un error
+        return render_template("IniciarSesion.html")
 
 
-tokens = {}
+#tokens = {}
 
-@app.route("/ConfEmail", methods=["GET", "POST"])
-def solicitar_actualizacion_contrasena():
-    if request.method == "POST":
-        email = request.form.get("email")
-        token = str(uuid.uuid4())  # Generar un token único
-        tokens[token] = email  # Almacenar el token y el email
+#@app.route("/ConfEmail", methods=["GET", "POST"])
+#      email = request.form.get("email")
+ #       token = str(uuid.uuid4())  # Generar un token único
+  #      tokens[token] = email  # Almacenar el token y el email
 
         # Enviar correo al usuario
-        enviar_correo(email, token)
-        flash(
-            "Se ha enviado un enlace a tu correo para actualizar la contraseña.",
-            "success",
-        )
-        return redirect(url_for("iniciar_sesion"))
+   #     enviar_correo(email, token)
+    #    flash(
+     #       "Se ha enviado un enlace a tu correo para actualizar la contraseña.",
+      #      "success",
+       # )
+        #return redirect(url_for("iniciar_sesion"))
 
-    return render_template("ConfEmail.html")
+    #return render_template("ConfEmail.html")
 
 
 @app.route("/NewContraseña", methods=["GET", "POST"])
