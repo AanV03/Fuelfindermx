@@ -31,6 +31,9 @@ app.secret_key = "tu_secreto"
 def inicioandindex():
     return render_template("inicio.html")
 
+@app.route("/Inicio")
+def inicio():
+    return render_template("inicio.html")
 
 @app.route("/Mapa")
 def index():
