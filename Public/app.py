@@ -18,12 +18,12 @@ from models.Registro_utils import (
     registrar_usuario,
 )  # Importar la función para registrar usuarios
 from models.NewContraseña_utils import actualizar_contraseña
-from models.Correo_utils import enviar_correo
 import xml.etree.ElementTree as ET
 import xmltodict, json, uuid
-
+from flask_mail import Mail,Message 
 
 app = Flask(__name__)
+mail = Mail(app)
 app.secret_key = "tu_secreto"
 
 
@@ -180,44 +180,14 @@ def iniciar_sesion():
     return render_template("IniciarSesion.html")
 
 
-tokens = {}
-
-@app.route("/ConfEmail", methods=["GET", "POST"])
-def solicitar_actualizacion_contrasena():
-    if request.method == "POST":
-        email = request.form.get("email")
-        token = str(uuid.uuid4())  # Generar un token único
-        tokens[token] = email  # Almacenar el token y el email
-
-        # Enviar correo al usuario
-        enviar_correo(email, token)
-        flash(
-            "Se ha enviado un enlace a tu correo para actualizar la contraseña.",
-            "success",
-        )
-        return redirect(url_for("iniciar_sesion"))
-
-    return render_template("ConfEmail.html")
+@app.route('/security-question/<int:security_question_id>', methods=['GET', 'POST'])
+def security_question(security_question_id):
+    # Código para manejar la lógica de la pregunta de seguridad.
 
 
 @app.route("/NewContraseña", methods=["GET", "POST"])
 def actualizar_contrasena_route():
-    token = request.args.get("token")
-    if request.method == "POST":
-        nueva_contraseña = request.form.get("nueva_contraseña")
-        email = tokens.get(token)  # Obtener el email usando el token
-
-        if email and actualizar_contraseña(email, nueva_contraseña):
-            flash("Contraseña actualizada exitosamente.", "success")
-            del tokens[token]  # Eliminar el token después de usarlo
-            return redirect(url_for("iniciarSesion"))
-        else:
-            flash("Ocurrió un error al actualizar la contraseña.", "danger")
-            return redirect(url_for("ConfEmail"))
-
-    return render_template(
-        "NewContraseña.html", token=token
-    )  # Renderizar el formulario de actualización
+    return render_template("NewContraseña.html")  # Renderizar el formulario de actualización
 
 
 @app.route("/ConfToken")
@@ -229,16 +199,22 @@ def Conf_token():
 def create_account():
     if request.method == "POST":
         print("Solicitud POST recibida")
+
         # Obtener datos del formulario
         nombre = request.form.get("nombre")
-        apellido = request.form.get("apellido")  # Incluimos el apellido
+        apellido = request.form.get("apellido")
         email = request.form.get("email")
         contraseña = request.form.get("contraseña")
         confirmar_contraseña = request.form.get("confirmar-contraseña")
+        
+        # Obtener los valores de la pregunta de seguridad y la respuesta
+        security_question_id = request.form.get("security_question_id")
+        security_answer = request.form.get("security_answer")
 
         # Usar la función registrar_usuario para manejar la lógica de registro
         resultado = registrar_usuario(
-            nombre, apellido, email, contraseña, confirmar_contraseña
+            nombre, apellido, email, contraseña, confirmar_contraseña, 
+            security_question_id, security_answer
         )
         print(resultado)
 
@@ -249,6 +225,7 @@ def create_account():
         # Si hubo un error, mostrar el mensaje de error
         flash(resultado, "danger")
         return render_template("CreateAcc.html")
+
     else:
         print("Solicitud GET recibida")
         print("no entre ", request.form.get("nombre"))
@@ -258,12 +235,7 @@ def create_account():
 
 @app.route("/success")
 def success():
-    return "Cuenta creada exitosamente."
-
-
-@app.route("/Gasolineras")
-def Gasolineras():
-    return render_template("Gasolineras.html")
+    return render_template("inicio.html")
 
 
 @app.route("/ModDatos")

@@ -1,22 +1,24 @@
-import sqlite3
+from conexion import obtener_conexion
 from werkzeug.security import generate_password_hash
-
-def obtener_conexion():
-    # Aquí debes implementar la lógica para conectarte a tu base de datos
-    return sqlite3.connect('tu_base_de_datos.db')
+import re
 
 def actualizar_contraseña(email, nueva_contraseña):
-    conexion = obtener_conexion()
+
+    conexion = None
     try:
-        cursor = conexion.cursor()
-        # Actualizar la contraseña en la base de datos
-        cursor.execute('UPDATE usuarios SET contrasena = ? WHERE email = ?', 
-                       (generate_password_hash(nueva_contraseña), email))
-        conexion.commit()
-        return True
+        conexion = obtener_conexion()  # Usar la función de conexión de conexion.py
+        if conexion is None:
+            return "No se pudo establecer conexión con la base de datos.", 500
+            
+        with conexion.cursor() as cursor:
+            query = "UPDATE usuarios SET contrasena = ? WHERE email = ?"
+            cursor.execute(query,(generate_password_hash(nueva_contraseña), email))
+            conexion.commit()
+        return "Contraseña actualizada correctamente.", True
+
     except Exception as e:
         print(f"Ocurrió un error: {e}")
         return False
     finally:
-        cursor.close()
-        conexion.close()
+        if conexion:
+            conexion.close()

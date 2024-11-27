@@ -44,18 +44,23 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-5">
-                <h2 class="text-center">Ingresa tu Correo</h2>
+                <h2 class="text-center">Preguntas de Seguridad</h2>
                 <br>
                 <form id="EmailForm" novalidate>
                     <div class="form-group">
-                        <label for="email">Ingresa tu correo electrónico </label>
-                        <input id="email" type="text" class="form-control" placeholder="Ingresa tu correo electrónico" required>
+                        <label for="nombre">Ingresa tu nombre(s) </label>
+                        <input id="nombre" type="text" class="form-control" placeholder="Ingresa tu Nombre(s)" required>
                         <span id="emailError" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label for="confirmEmail">Confirma tu correo electrónico</label>
-                        <input id="confirmEmail" type="text" class="form-control" placeholder="Confirma tu correo electrónico" required>
-                        <span id="confirmEmailError" class="text-danger"></span>
+                        <label for="nombre">Ingresa tu Apellido(s) </label>
+                        <input id="nombre" type="text" class="form-control" placeholder="Ingresa tu apellido(s)" required>
+                        <span id="emailError" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="security_answer">Contraseña de seguridad</label>
+                        <input id="security_question_id" type="text" class="form-control" placeholder="Confirma tu correo electrónico" required>
+                        <span id="security_answer" class="text-danger"></span>
                     </div>
                     <button type="submit" class="btn btn-dark btn-block">Siguiente</button>
                 </form>
