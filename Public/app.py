@@ -225,6 +225,7 @@ def iniciar_sesion():
     # Si el método es GET, renderiza la página de inicio de sesión
     return render_template("IniciarSesion.html")
 
+
 @app.route("/ConfEmail", methods=["GET", "POST"])
 def solicitar_actualizacion_contrasena():
     if request.method == "POST":
@@ -236,7 +237,7 @@ def solicitar_actualizacion_contrasena():
             "Se ha enviado un enlace a tu correo para actualizar la contraseña.",
             "success",
         )
-        return redirect(url_for("iniciar_sesion"))
+        return redirect(url_for("iniciarSesion"))
 
     return render_template("ConfirmarEmail.html")
 

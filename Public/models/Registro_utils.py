@@ -26,8 +26,8 @@ def registrar_usuario(nombre, apellido, email, contraseña, confirmar_contraseñ
         with conexion.cursor() as cursor:
             # Insertar el usuario junto con la pregunta de seguridad y la respuesta
             query = """
-            INSERT INTO dbo.Usuarios (Nombre, Apellido, Email, Contraseña, security_question_id, security_answer)
-            VALUES (?, ?, ?, ?, ?, ?)
+            INSERT INTO dbo.Usuarios (Nombre, Apellido,Telefono, Email, Contraseña)
+            VALUES (?, ?, ?, ?, ?)
             """
             cursor.execute(query, (nombre, apellido, email, contraseña_cifrada, security_question_id, security_answer))
             conexion.commit()
