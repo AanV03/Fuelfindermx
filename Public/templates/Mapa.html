@@ -72,6 +72,7 @@
                     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNk_qmynnpmxNQveb4aVqV1LZ6UTwg7Nw&callback=initMap"
                     async defer></script>
                 <script>
+                     let lastInfoWindow = null; // Variable para rastrear el último InfoWindow abierto
                     function initMap() {
                         var centro = { lat: 28.6757, lng: -106.1008 }; // Coordenadas aproximadas en el centro del área
 
@@ -97,50 +98,45 @@
                         });
 
                         // Agregar un evento al marcador para mostrar los precios
-                        marker.addListener("click", () => {
+                                    // Agregar evento al marcador para mostrar los precios
+                                    marker.addListener("click", () => {
+                                        fetch(`http://127.0.0.1:5000/api/precios?formato=json`)
+                                            .then(response => response.json())
+                                            .then(priceData => {
+                                                const placePrices = priceData.find(p => p.place_id == id);
 
-                            fetch(`http://127.0.0.1:5000/api/precios?formato=json`)
-                                .then(response => response.json())
-                                .then(priceData => {
-                                    // Buscar los precios para el `cre_id` correspondiente
-                                    //console.log(priceData)
-                                    
-                                    //priceData[0].place_id
-                                    //console.log(priceData); // Esto te mostrará la estructura completa de priceData
-                                    
-                                    console.log("Datos recibidos:", priceData);
+                                                if (placePrices) {
+                                                    let content = `<h3>${name}</h3><ul>`;
+                                                    placePrices.prices.forEach(price => {
+                                                        content += `<li>${price.type}: ${price.price} MXN</li>`;
+                                                    });
+                                                    content += `</ul>`;
 
-                                    const id = place.place_id;
+                                                    // Crear nuevo InfoWindow
+                                                    const infoWindow = new google.maps.InfoWindow({
+                                                        content,
+                                                    });
 
-                                    const placePrices = priceData.find(p => p.place_id == id);
+                                                    // Cerrar el último InfoWindow si está abierto
+                                                    if (lastInfoWindow) {
+                                                        lastInfoWindow.close();
+                                                    }
 
-if (placePrices) {
-    let content = `<h3>${name}</h3><ul>`;
-    placePrices.prices.forEach(price => {
-        content += `<li>${price.type}: ${price.price} MXN</li>`;
-    });
-    content += `</ul>`;
-
-    const infoWindow = new google.maps.InfoWindow({
-        content,
-    });
-    infoWindow.open(map, marker);
-} else {
-    console.warn(`El ID ${id} no tiene precios disponibles.`);
-    alert("No hay precios disponibles para esta ubicación.");
-}
-        })
-        .catch(error => {
-            console.error("Error al cargar los datos de precios:", error);
-        });
-});
-
-                                   
+                                                    // Abrir el nuevo InfoWindow y actualizar el último
+                                                    infoWindow.open(map, marker);
+                                                    lastInfoWindow = infoWindow;
+                                                } else {
+                                                    console.warn(`El ID ${id} no tiene precios disponibles.`);
+                                                    alert("No hay precios disponibles para esta ubicación.");
+                                                }
+                                            })
+                                            .catch(error => {
+                                                console.error("Error al cargar los datos de precios:", error);
+                                            });
+                                    });
                                 });
-                            
-                        });
-                    };
-                
+                            });
+                    }
                 </script>
             </div>
         </div>

@@ -39,21 +39,24 @@
         </div>
     </nav>
 
-    <!--Header de informacion-->
-    <header class="jumbotron d-flex align-items-center " style="height: 225px; width: 100%;">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-auto">
-                    <img src="{{ url_for('static', filename='images/logo.png') }}" style="width: 200px; height: 200px;" alt="Logo de FuelFinder">
-                </div>
-                <div class="col">
-                    <p class="display-4" style="font-size:4em; font-weight: bold;">FuelFinderMX</p>
-                    <h4>Busca cerca de tu área y ahorra en gasolina!</h4>
-                </div>
+<!-- Header de información -->
+<header class="jumbotron d-flex align-items-center p-3" style="width: 100%; background-color: #f1f1f1;">
+    <div class="container">
+        <div class="row align-items-center text-center text-md-left">
+            <!-- Imagen del logo -->
+            <div class="col-12 col-md-auto mb-3 mb-md-0">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" class="img-fluid" 
+                     style="max-width: 200px;" alt="Logo de FuelFinder">
+            </div>
+            <!-- Texto -->
+            <div class="col">
+                <p class="display-4 mb-0" style="font-size: 4em; font-weight: bold;">FuelFinderMX</p>
+                <h4 class="mt-2" style="font-size: 1.25em;">Busca cerca de tu área y ahorra en gasolina!</h4>
             </div>
         </div>
-    </header>
-    
+    </div>
+</header>
+
     <!--Carrusel de imagenes-->
     <section class="container">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-interval="6000">
@@ -79,8 +82,9 @@
             <div id="mas-bajo" class="col-md-5 p-3 border rounded shadow h-100">
                 <h2 class="text-center">Precio más bajo</h2>
                 <div class="text-center">
-                    <img id="img-mas-bajo" src="" alt="Gasolinera" class="img-fluid mb-3">
+                    <span id="img-mas-bajo" src="" alt="Gasolinera" class="img-fluid mb-3"></span>
                 </div>
+                <br>
                 <p><strong>Nombre:</strong> <span id="nombre-bajo"></span></p>
                 <p><strong>Precio Regular:</strong> $<span id="precio-bajo"></span></p>
                 <p><strong>Ubicación:</strong> <span id="ubicacion-bajo"></span></p>
@@ -92,11 +96,12 @@
             <div id="mas-alto" class="col-md-5 p-3 border rounded shadow h-100">
                 <h2 class="text-center">Precio más alto</h2>
                 <div class="text-center">
-                    <img id="img-mas-alto" src="" alt="Gasolinera" class="img-fluid mb-3">
+                    <p><span id="img-mas-bajo" src="" alt="Gasolinera" class="img-fluid mb-3"></span>
                 </div>
+                <br>
                 <p><strong>Nombre:</strong> <span id="nombre-alto"></span></p>
                 <p><strong>Precio Regular:</strong> $<span id="precio-alto"></span></p>
-                <p><strong>Ubicación:</strong> <span id="ubicacion-alto"></span></p>
+                <p><strong>Ubicación:</strong> <span id="ubicacion-alto"></span></p>    
             </div>
         </div>
     </div>
