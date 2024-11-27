@@ -225,13 +225,21 @@ def iniciar_sesion():
     # Si el método es GET, renderiza la página de inicio de sesión
     return render_template("IniciarSesion.html")
 
+@app.route("/ConfEmail", methods=["GET", "POST"])
+def solicitar_actualizacion_contrasena():
+    if request.method == "POST":
+        email = request.form.get("email")
 
+        # Enviar correo al usuario
+        enviar_correo(email,Message)
+        flash(
+            "Se ha enviado un enlace a tu correo para actualizar la contraseña.",
+            "success",
+        )
+        return redirect(url_for("iniciar_sesion"))
 
+    return render_template("ConfirmarEmail.html")
 
-@app.route('/security-question/<int:security_question_id>', methods=['GET', 'POST'])
-def security_question(security_question_id):
-    # Código para manejar la lógica de la pregunta de seguridad.
-    return render_template('pregunta.html')
 
 @app.route("/NewContraseña", methods=["GET", "POST"])
 def actualizar_contrasena_route():
