@@ -229,6 +229,7 @@ def iniciar_sesion():
 @app.route('/security-question/<int:security_question_id>', methods=['GET', 'POST'])
 def security_question(security_question_id):
     # Código para manejar la lógica de la pregunta de seguridad.
+    return render_template("pregunta.html")
 
 
 @app.route("/NewContraseña", methods=["GET", "POST"])
