@@ -177,41 +177,53 @@ def precios_ubicaciones():
 
 @app.route("/IniciarSesion", methods=['GET','POST'])
 def iniciar_sesion():
-   if request.method == 'POST':
-        # Obtener datos del formulario
-        email = request.form.get('email')
-        password = request.form.get('password')
+    if request.method == "POST":
+        # Obtener los datos del formulario
+        email = request.form.get("email")
+        password = request.form.get("contraseña")
 
-        # Verificar si el usuario existe en la base de datos
-        conn = get_db_connection()  # Tu función de conexión
+        # Verificar campos vacíos
+        if not email or not password:
+            flash("Por favor, completa todos los campos", "warning")
+            return render_template("IniciarSesion.html")
+
+        # Conexión a la base de datos
+        conn = obtener_conexion()
         cursor = conn.cursor()
 
         try:
-            # Consulta para obtener el hash de la contraseña basado en el email
-            cursor.execute("SELECT password_hash FROM usuarios WHERE email = ?", (email,))
+            # Consultar la contraseña almacenada en la base de datos
+            cursor.execute("SELECT contraseña FROM usuarios WHERE email = ?", (email,))
             result = cursor.fetchone()
 
             if result:
-                stored_password_hash = result[0]  # Hash almacenado
+                stored_password_hash = result[0]
 
-                # Comparar la contraseña ingresada con el hash
-                if bcrypt.checkpw(password.encode('utf-8'), stored_password_hash.encode('utf-8')):
-                    # Si es válida, guardar el inicio de sesión en la sesión
-                    session['user'] = email
-                    flash('Inicio de sesión exitoso', 'success')
-                    return redirect(url_for('dashboard'))  # Cambia 'dashboard' por tu ruta principal
+                # Verificar contraseña
+                if bcrypt.checkpw(password.encode("utf-8"), stored_password_hash.encode("utf-8")):
+                    session["user_id"] = email  # Guardar sesión
+                    flash("Inicio de sesión exitoso", "success")
+                    print('si hubo conexion papu')
+                    return redirect(url_for("perfil"))  # Redirige al perfil
                 else:
-                    flash('Contraseña incorrecta', 'danger')
+                    flash("Contraseña incorrecta", "danger")
+                    print('mamaste papu sin contra')
             else:
-                flash('El correo no está registrado', 'danger')
+                flash("El correo no está registrado", "danger")
+                print('mamaste papu')
+
         except Exception as e:
             print(f"Error al verificar el inicio de sesión: {e}")
-            flash('Ocurrió un error. Inténtalo de nuevo.', 'danger')
+            flash("Ocurrió un error. Inténtalo de nuevo.", "danger")
         finally:
             conn.close()
 
-    # Renderiza el formulario de inicio de sesión si es un GET o si hubo un error
-        return render_template("IniciarSesion.html")
+        return render_template("IniciarSesion.html")  # Renderizar en caso de error
+
+    # Si el método es GET, renderiza la página de inicio de sesión
+    return render_template("IniciarSesion.html")
+
+
 
 
 @app.route('/security-question/<int:security_question_id>', methods=['GET', 'POST'])

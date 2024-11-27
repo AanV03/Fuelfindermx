@@ -1,5 +1,6 @@
 from conexion import obtener_conexion
-from werkzeug.security import generate_password_hash
+#from werkzeug.security import generate_password_hash
+import bcrypt
 import re
 
 def registrar_usuario(nombre, apellido, email, contraseña, confirmar_contraseña, security_question_id, security_answer):
@@ -10,12 +11,11 @@ def registrar_usuario(nombre, apellido, email, contraseña, confirmar_contraseñ
         return "Las contraseñas no coinciden. Por favor, inténtalo de nuevo.", 400
 
     # Cifrar la contraseña
-    contraseña_cifrada = generate_password_hash(str(contraseña))
-    
-    # Validar que la respuesta de seguridad no esté vacía
-    if not security_answer:
-        return "La respuesta de seguridad no puede estar vacía.", 400
+    salt = bcrypt.gensalt()
+    contraseña_cifrada = bcrypt.hashpw(contraseña.encode('utf-8'), salt).decode('utf-8')
 
+    print('pase por aqui y si falle 22')
+    
     # Conectar a la base de datos y guardar los datos
     conexion = None
     try:
