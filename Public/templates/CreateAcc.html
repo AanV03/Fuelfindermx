@@ -65,20 +65,11 @@
                         <div id="emailError" class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
-                        <label for="securityQuestion">Pregunta de seguridad</label>
-                        <select class="form-control" id="securityQuestion" name="security_question_id" required>
-                            <option id="security_question_id" value="1">¿Cuál es el nombre de tu primera mascota?
-                            </option>
-                            <option id="security_question_id" value="2">¿En qué ciudad naciste?</option>
-                            <option id="security_question_id" value="3">¿Cuál es tu comida favorita?</option>
-                            <option id="security_question_id" value="4">¿Cuál es tu color favorito?</option>
-                            <option id="security_question_id" value="5">¿A cual primaria asististe?</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="securityAnswer">Respuesta de seguridad</label>
-                        <input type="text" class="form-control" id="securityAnswer" name="security_answer" required>
-                    </div>
+                        <label for="email">Número de teléfono</label>
+                        <input type="tel" name='telefono' class="form-control" id="telefono" placeholder="Ingrese su número de teléfono" 
+                        required maxlength="10">
+                        <div id="telefonoError" class="invalid-feedback"></div>
+                    </div>  
                     <div class="form-group">
                         <label for="contraseña">Contraseña</label>
                         <input type="password" name="contraseña" class="form-control" id="contraseña"
@@ -91,6 +82,20 @@
                             placeholder="Confirme su contraseña" required>
                         <div id="confirmarContraseñaError" class="invalid-feedback"></div>
                     </div>
+                    <div class="form-group">
+                        <label for="securityQuestion">Pregunta de seguridad</label>
+                        <select class="form-control" id="securityQuestion" name="security_question_id" required>
+                            <option value="1">¿Cuál es el nombre de tu primera mascota?</option>
+                            <option value="2">¿En qué ciudad naciste?</option>
+                            <option value="3">¿Cuál es tu comida favorita?</option>
+                            <option value="4">¿Cuál es tu color favorito?</option>
+                            <option value="5">¿A cual primaria asististe?</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="securityAnswer">Respuesta de seguridad</label>
+                        <input type="text" class="form-control" id="securityAnswer" name="security_answer" required>
+                    </div>
                     <button type="submit" class="btn btn-primary btn-block">Crear Cuenta</button>
                 </form>
 

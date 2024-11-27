@@ -175,9 +175,43 @@ def precios_ubicaciones():
         return jsonify({"error": "Formato no soportado"}), 400
 
 
-@app.route("/IniciarSesion")
+@app.route("/IniciarSesion", methods=['GET','POST'])
 def iniciar_sesion():
-    return render_template("IniciarSesion.html")
+   if request.method == 'POST':
+        # Obtener datos del formulario
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        # Verificar si el usuario existe en la base de datos
+        conn = get_db_connection()  # Tu función de conexión
+        cursor = conn.cursor()
+
+        try:
+            # Consulta para obtener el hash de la contraseña basado en el email
+            cursor.execute("SELECT password_hash FROM usuarios WHERE email = ?", (email,))
+            result = cursor.fetchone()
+
+            if result:
+                stored_password_hash = result[0]  # Hash almacenado
+
+                # Comparar la contraseña ingresada con el hash
+                if bcrypt.checkpw(password.encode('utf-8'), stored_password_hash.encode('utf-8')):
+                    # Si es válida, guardar el inicio de sesión en la sesión
+                    session['user'] = email
+                    flash('Inicio de sesión exitoso', 'success')
+                    return redirect(url_for('dashboard'))  # Cambia 'dashboard' por tu ruta principal
+                else:
+                    flash('Contraseña incorrecta', 'danger')
+            else:
+                flash('El correo no está registrado', 'danger')
+        except Exception as e:
+            print(f"Error al verificar el inicio de sesión: {e}")
+            flash('Ocurrió un error. Inténtalo de nuevo.', 'danger')
+        finally:
+            conn.close()
+
+    # Renderiza el formulario de inicio de sesión si es un GET o si hubo un error
+        return render_template("IniciarSesion.html")
 
 
 @app.route('/security-question/<int:security_question_id>', methods=['GET', 'POST'])
