@@ -1,6 +1,7 @@
 # models/registro_utils.py
 from conexion import obtener_conexion
-from werkzeug.security import generate_password_hash
+#from werkzeug.security import generate_password_hash
+import bcrypt
 import re
 
 def registrar_usuario(nombre, apellido, email, contraseña, confirmar_contraseña):
@@ -11,7 +12,9 @@ def registrar_usuario(nombre, apellido, email, contraseña, confirmar_contraseñ
         return "Las contraseñas no coinciden. Por favor, inténtalo de nuevo.", 400
         
     # Cifrar la contraseña
-    contraseña_cifrada = generate_password_hash(str(contraseña))
+    salt = bcrypt.gensalt()
+    contraseña_cifrada = bcrypt.hashpw(contraseña.encode('utf-8'), salt).decode('utf-8')
+
     print('pase por aqui y si falle 22')
     
     # Conectar a la base de datos y guardar los datos
