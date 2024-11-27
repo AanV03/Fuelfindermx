@@ -21,6 +21,8 @@ from models.NewContraseña_utils import actualizar_contraseña
 import xml.etree.ElementTree as ET
 import xmltodict, json, uuid
 from flask_mail import Mail,Message 
+import bcrypt
+from conexion import obtener_conexion
 
 app = Flask(__name__)
 mail = Mail(app)
@@ -188,8 +190,8 @@ def iniciar_sesion():
             return render_template("IniciarSesion.html")
 
         # Conexión a la base de datos
-        conn = obtener_conexion()
-        cursor = conn.cursor()
+        conexion = obtener_conexion()
+        cursor = conexion.cursor()
 
         try:
             # Consultar la contraseña almacenada en la base de datos
@@ -216,20 +218,27 @@ def iniciar_sesion():
             print(f"Error al verificar el inicio de sesión: {e}")
             flash("Ocurrió un error. Inténtalo de nuevo.", "danger")
         finally:
-            conn.close()
+            conexion.close()
 
         return render_template("IniciarSesion.html")  # Renderizar en caso de error
 
     # Si el método es GET, renderiza la página de inicio de sesión
     return render_template("IniciarSesion.html")
 
+@app.route("/ConfEmail", methods=["GET", "POST"])
+def solicitar_actualizacion_contrasena():
+    if request.method == "POST":
+        email = request.form.get("email")
 
+        # Enviar correo al usuario
+        enviar_correo(email,Message)
+        flash(
+            "Se ha enviado un enlace a tu correo para actualizar la contraseña.",
+            "success",
+        )
+        return redirect(url_for("iniciar_sesion"))
 
-
-@app.route('/security-question/<int:security_question_id>', methods=['GET', 'POST'])
-def security_question(security_question_id):
-    # Código para manejar la lógica de la pregunta de seguridad.
-    return render_template("pregunta.html")
+    return render_template("ConfirmarEmail.html")
 
 
 @app.route("/NewContraseña", methods=["GET", "POST"])
