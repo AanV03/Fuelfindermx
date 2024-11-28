@@ -1,16 +1,15 @@
-# models/registro_utils.py
 from conexion import obtener_conexion
 #from werkzeug.security import generate_password_hash
 import bcrypt
 import re
 
-def registrar_usuario(nombre, apellido, email, contraseña, confirmar_contraseña):
-    """Función para registrar un nuevo usuario en la base de datos."""
-    # Validar contraseñas
+def registrar_usuario(nombre, apellido, email, contraseña, confirmar_contraseña, security_question_id, security_answer):
+    "Función para registrar un nuevo usuario en la base de datos."
     
+    # Validar contraseñas
     if contraseña != confirmar_contraseña:
         return "Las contraseñas no coinciden. Por favor, inténtalo de nuevo.", 400
-        
+
     # Cifrar la contraseña
     salt = bcrypt.gensalt()
     contraseña_cifrada = bcrypt.hashpw(contraseña.encode('utf-8'), salt).decode('utf-8')
@@ -25,8 +24,12 @@ def registrar_usuario(nombre, apellido, email, contraseña, confirmar_contraseñ
             return "No se pudo establecer conexión con la base de datos.", 500
             
         with conexion.cursor() as cursor:
-            query = "INSERT INTO dbo.Usuarios (Nombre, Apellido, Email, Contraseña)VALUES (?, ?, ?, ?)"
-            cursor.execute(query, (nombre, apellido, email, contraseña_cifrada))
+            # Insertar el usuario junto con la pregunta de seguridad y la respuesta
+            query = """
+            INSERT INTO dbo.Usuarios (Nombre, Apellido,Telefono, Email, Contraseña)
+            VALUES (?, ?, ?, ?, ?)
+            """
+            cursor.execute(query, (nombre, apellido, email, contraseña_cifrada, security_question_id, security_answer))
             conexion.commit()
 
         return "Cuenta creada exitosamente.", 200

@@ -17,15 +17,17 @@ from models.Perfil_utils import (
 from models.Registro_utils import (
     registrar_usuario,
 )  # Importar la función para registrar usuarios
-from models.NewContraseña_utils import actualizar_contraseña
-#from models.Correo_utils import enviar_correo
+from models.Email_utils import enviar_correo
+from models.Verificacion_utils import verificar_correo
+from models.NewContraseña_utils import nueva_contraseña
 import xml.etree.ElementTree as ET
 import xmltodict, json, uuid
+from flask_mail import Mail,Message 
 import bcrypt
 from conexion import obtener_conexion
 
-
 app = Flask(__name__)
+mail = Mail(app)
 app.secret_key = "tu_secreto"
 
 
@@ -190,8 +192,8 @@ def iniciar_sesion():
             return render_template("IniciarSesion.html")
 
         # Conexión a la base de datos
-        conn = obtener_conexion()
-        cursor = conn.cursor()
+        conexion = obtener_conexion()
+        cursor = conexion.cursor()
 
         try:
             # Consultar la contraseña almacenada en la base de datos
@@ -218,7 +220,7 @@ def iniciar_sesion():
             print(f"Error al verificar el inicio de sesión: {e}")
             flash("Ocurrió un error. Inténtalo de nuevo.", "danger")
         finally:
-            conn.close()
+            conexion.close()
 
         return render_template("IniciarSesion.html")  # Renderizar en caso de error
 
@@ -232,44 +234,66 @@ def cerrar_sesion():
     return redirect(url_for('inicio'))
 
 
+@app.route('/send_email', methods=['GET'])
+def send_mail():
+    msg_title='prueba de correo'
+    sender = 'noreply@app.com'
+    msg = Message(msg_title,sender=sender,recipients=['aaronavarah@gmail.com'])
+    msg_body = 'Este es el cuerpo del mensaje'
+    data = {
+        'app_name':'Nombre de la aplicación que envia el email',
+        'title': msg_title,
+        'body':msg_body
+    } 
+    try:
+        mail.send(msg)
+        return 'mensaje enviado'
+    except Exception as ex:
+        print(ex)
+        return f'Mensaje no enviado {ex}'
 
 
-#tokens = {}
-
-#@app.route("/ConfEmail", methods=["GET", "POST"])
-#      email = request.form.get("email")
- #       token = str(uuid.uuid4())  # Generar un token único
-  #      tokens[token] = email  # Almacenar el token y el email
-
-        # Enviar correo al usuario
-   #     enviar_correo(email, token)
-    #    flash(
-     #       "Se ha enviado un enlace a tu correo para actualizar la contraseña.",
-      #      "success",
-       # )
-        #return redirect(url_for("iniciar_sesion"))
-
-    #return render_template("ConfEmail.html")
-
-
-@app.route("/NewContraseña", methods=["GET", "POST"])
-def actualizar_contrasena_route():
-    token = request.args.get("token")
-    if request.method == "POST":
-        nueva_contraseña = request.form.get("nueva_contraseña")
-        email = tokens.get(token)  # Obtener el email usando el token
-
-        if email and actualizar_contraseña(email, nueva_contraseña):
-            flash("Contraseña actualizada exitosamente.", "success")
-            del tokens[token]  # Eliminar el token después de usarlo
-            return redirect(url_for("iniciarSesion"))
+@app.route('/ConfirmarEmail', methods=['GET', 'POST'])
+def recuperar_contrasena():
+    """
+    Ruta para manejar la solicitud de recuperación de contraseña.
+    """
+    if request.method == 'POST':
+        email = request.form.get('email')  # Obtiene el correo ingresado en el formulario
+        
+        # Verificar si el correo existe en la base de datos
+        if verificar_correo(email):
+            # Enviar el correo si el usuario existe
+            if enviar_correo(email):
+                return jsonify({'success': True, 'message': 'Correo enviado exitosamente.'})
+            else:
+                return jsonify({'success': False, 'message': 'Error al enviar el correo.'}), 500
         else:
-            flash("Ocurrió un error al actualizar la contraseña.", "danger")
-            return redirect(url_for("ConfEmail"))
+            return jsonify({'success': False, 'message': 'El correo no está registrado.'}), 404
+    
+    # Si es GET, muestra el formulario
+    return render_template('ConfirmarEmail.html')
 
-    return render_template(
-        "NewContraseña.html", token=token
-    )  # Renderizar el formulario de actualización
+
+@app.route('/NuevaContraseña', methods=['GET', 'POST'])
+def restablecer_contrasena():
+    """
+    Ruta para manejar el restablecimiento de contraseña.
+    """
+    if request.method == 'POST':
+        email = request.form.get('email')  # Puedes recibir este dato como parte del formulario
+        nueva_contrasena = request.form.get('nueva_contraseña')
+        confirmar_contrasena = request.form.get('confirmar_contraseña')
+
+        # Llamar a la función de actualización de contraseña
+        mensaje, exito = nueva_contraseña(email, nueva_contrasena, confirmar_contrasena)
+        
+        if exito:
+            return jsonify({'success': True, 'message': mensaje})
+        else:
+            return jsonify({'success': False, 'message': mensaje}), 400
+
+    return render_template('NewContraseña.html')
 
 
 @app.route("/ConfToken")
@@ -281,16 +305,22 @@ def Conf_token():
 def create_account():
     if request.method == "POST":
         print("Solicitud POST recibida")
+
         # Obtener datos del formulario
         nombre = request.form.get("nombre")
-        apellido = request.form.get("apellido")  # Incluimos el apellido
+        apellido = request.form.get("apellido")
         email = request.form.get("email")
         contraseña = request.form.get("contraseña")
         confirmar_contraseña = request.form.get("confirmar-contraseña")
+        
+        # Obtener los valores de la pregunta de seguridad y la respuesta
+        security_question_id = request.form.get("security_question_id")
+        security_answer = request.form.get("security_answer")
 
         # Usar la función registrar_usuario para manejar la lógica de registro
         resultado = registrar_usuario(
-            nombre, apellido, email, contraseña, confirmar_contraseña
+            nombre, apellido, email, contraseña, confirmar_contraseña, 
+            security_question_id, security_answer
         )
         print(resultado)
 
@@ -301,6 +331,7 @@ def create_account():
         # Si hubo un error, mostrar el mensaje de error
         flash(resultado, "danger")
         return render_template("CreateAcc.html")
+
     else:
         print("Solicitud GET recibida")
         print("no entre ", request.form.get("nombre"))
@@ -310,12 +341,7 @@ def create_account():
 
 @app.route("/success")
 def success():
-    return "Cuenta creada exitosamente."
-
-
-@app.route("/Gasolineras")
-def Gasolineras():
-    return render_template("Gasolineras.html")
+    return render_template("inicio.html")
 
 
 @app.route("/ModDatos")
