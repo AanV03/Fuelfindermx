@@ -3,7 +3,7 @@ from conexion import obtener_conexion
 import bcrypt
 import re
 
-def registrar_usuario(nombre, apellido, email, contraseña, confirmar_contraseña, security_question_id, security_answer):
+def registrar_usuario(nombre, apellido, email, contraseña, confirmar_contraseña):
     "Función para registrar un nuevo usuario en la base de datos."
     
     # Validar contraseñas
@@ -26,10 +26,10 @@ def registrar_usuario(nombre, apellido, email, contraseña, confirmar_contraseñ
         with conexion.cursor() as cursor:
             # Insertar el usuario junto con la pregunta de seguridad y la respuesta
             query = """
-            INSERT INTO dbo.Usuarios (Nombre, Apellido,Telefono, Email, Contraseña)
-            VALUES (?, ?, ?, ?, ?)
+            INSERT INTO dbo.Usuarios (Nombre, Apellido, Email, Contraseña)
+            VALUES (?, ?, ?, ?)
             """
-            cursor.execute(query, (nombre, apellido, email, contraseña_cifrada, security_question_id, security_answer))
+            cursor.execute(query, (nombre, apellido,email, contraseña_cifrada))
             conexion.commit()
 
         return "Cuenta creada exitosamente.", 200

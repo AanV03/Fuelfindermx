@@ -313,14 +313,9 @@ def create_account():
         contraseña = request.form.get("contraseña")
         confirmar_contraseña = request.form.get("confirmar-contraseña")
         
-        # Obtener los valores de la pregunta de seguridad y la respuesta
-        security_question_id = request.form.get("security_question_id")
-        security_answer = request.form.get("security_answer")
-
         # Usar la función registrar_usuario para manejar la lógica de registro
         resultado = registrar_usuario(
-            nombre, apellido, email, contraseña, confirmar_contraseña, 
-            security_question_id, security_answer
+            nombre, apellido, email, contraseña, confirmar_contraseña
         )
         print(resultado)
 
