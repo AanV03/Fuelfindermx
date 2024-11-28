@@ -17,7 +17,9 @@ from models.Perfil_utils import (
 from models.Registro_utils import (
     registrar_usuario,
 )  # Importar la función para registrar usuarios
-from models.NewContraseña_utils import actualizar_contraseña
+from models.Email_utils import enviar_correo
+from models.Verificacion_utils import verificar_correo
+from models.NewContraseña_utils import nueva_contraseña
 import xml.etree.ElementTree as ET
 import xmltodict, json, uuid
 from flask_mail import Mail,Message 
@@ -226,25 +228,66 @@ def iniciar_sesion():
     return render_template("IniciarSesion.html")
 
 
-@app.route("/ConfEmail", methods=["GET", "POST"])
-def solicitar_actualizacion_contrasena():
-    if request.method == "POST":
-        email = request.form.get("email")
+@app.route('/send_email', methods=['GET'])
+def send_mail():
+    msg_title='prueba de correo'
+    sender = 'noreply@app.com'
+    msg = Message(msg_title,sender=sender,recipients=['aaronavarah@gmail.com'])
+    msg_body = 'Este es el cuerpo del mensaje'
+    data = {
+        'app_name':'Nombre de la aplicación que envia el email',
+        'title': msg_title,
+        'body':msg_body
+    } 
+    try:
+        mail.send(msg)
+        return 'mensaje enviado'
+    except Exception as ex:
+        print(ex)
+        return f'Mensaje no enviado {ex}'
 
-        # Enviar correo al usuario
-        enviar_correo(email,Message)
-        flash(
-            "Se ha enviado un enlace a tu correo para actualizar la contraseña.",
-            "success",
-        )
-        return redirect(url_for("iniciarSesion"))
 
-    return render_template("ConfirmarEmail.html")
+@app.route('/ConfirmarEmail', methods=['GET', 'POST'])
+def recuperar_contrasena():
+    """
+    Ruta para manejar la solicitud de recuperación de contraseña.
+    """
+    if request.method == 'POST':
+        email = request.form.get('email')  # Obtiene el correo ingresado en el formulario
+        
+        # Verificar si el correo existe en la base de datos
+        if verificar_correo(email):
+            # Enviar el correo si el usuario existe
+            if enviar_correo(email):
+                return jsonify({'success': True, 'message': 'Correo enviado exitosamente.'})
+            else:
+                return jsonify({'success': False, 'message': 'Error al enviar el correo.'}), 500
+        else:
+            return jsonify({'success': False, 'message': 'El correo no está registrado.'}), 404
+    
+    # Si es GET, muestra el formulario
+    return render_template('ConfirmarEmail.html')
 
 
-@app.route("/NewContraseña", methods=["GET", "POST"])
-def actualizar_contrasena_route():
-    return render_template("NewContraseña.html")  # Renderizar el formulario de actualización
+@app.route('/NuevaContraseña', methods=['GET', 'POST'])
+def restablecer_contrasena():
+    """
+    Ruta para manejar el restablecimiento de contraseña.
+    """
+    if request.method == 'POST':
+        email = request.form.get('email')  # Puedes recibir este dato como parte del formulario
+        nueva_contrasena = request.form.get('nueva_contraseña')
+        confirmar_contrasena = request.form.get('confirmar_contraseña')
+
+        # Llamar a la función de actualización de contraseña
+        mensaje, exito = nueva_contraseña(email, nueva_contrasena, confirmar_contrasena)
+        
+        if exito:
+            return jsonify({'success': True, 'message': mensaje})
+        else:
+            return jsonify({'success': False, 'message': mensaje}), 400
+
+    return render_template('NewContraseña.html')
 
 
 @app.route("/ConfToken")

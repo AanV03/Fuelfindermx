@@ -1,4 +1,11 @@
-    <link rel="icon" href="{{ url_for('static', filename='images/logo 64x64.ico') }}" sizes="64x64" type="image/x-icon">    
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FuelFinderMX - Registro de Correo</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/logo 64x64.ico') }}" sizes="64x64" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -28,27 +35,27 @@
                     <a class="nav-link" style="color: rgb(0, 0, 0);" href="Perfil">Perfil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color: rgb(0, 0, 0);" href="IniciarSesion">Iniciar sesion</a>
+                    <a class="nav-link" style="color: rgb(0, 0, 0);" href="IniciarSesion">Iniciar sesión</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <!--Formulario para registrar la informacion de cuenta-->
+    <!-- Formulario para registrar la información de cuenta -->
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-5">
                 <h2 class="text-center">Ingresa tu Correo</h2>
                 <br>
-                <form id="EmailForm" novalidate>
+                <form id="EmailForm" novalidate method="POSt">
                     <div class="form-group">
-                        <label for="email">Ingresa tu correo electrónico </label>
-                        <input id="email" type="text" class="form-control" placeholder="Ingresa tu correo electrónico" required>
+                        <label for="email">Ingresa tu correo electrónico</label>
+                        <input id="email" type="email" class="form-control" placeholder="Ingresa tu correo electrónico" required autocomplete="email">
                         <span id="emailError" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label for="confirmEmail">Confirma tu correo electrónico</label>
-                        <input id="confirmEmail" type="text" class="form-control" placeholder="Confirma tu correo electrónico" required>
+                        <input id="confirmEmail" type="email" class="form-control" placeholder="Confirma tu correo electrónico" required autocomplete="email">
                         <span id="confirmEmailError" class="text-danger"></span>
                     </div>
                     <button type="submit" class="btn btn-dark btn-block">Siguiente</button>
@@ -57,18 +64,16 @@
         </div>
     </div>
 
-    <!--Footer de informacion de contacto-->
-
-    <footer class="bg-dark text-light pt-5 pb-3 px-5 mt-5 ">
+    <!-- Footer de información de contacto -->
+    <footer class="bg-dark text-light pt-5 pb-3 px-5 mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <h5 class="text-left">Contacto</h5>
                     <br>
                     <ul class="list-unstyled">
-                        <li class="custom-text text-left"><i class="fa-solid fa-map"></i> Direccion: <a
-                                href="https://maps.app.goo.gl/v59XQ16W5ncPVQXx8">Km 3.5 Carretera
-                                Chihuahua a Aldama Colinas de León, 31313, 31300 Chihuahua, Chihuahua · 06 km</a>
+                        <li class="custom-text text-left"><i class="fa-solid fa-map"></i> Dirección: <a
+                                href="https://maps.app.goo.gl/v59XQ16W5ncPVQXx8">Km 3.5 Carretera Chihuahua a Aldama, Colinas de León, 31313, Chihuahua, México</a>
                         </li>
                         <li class="custom-text text-left"><i class="fa-solid fa-envelope"></i> Email 1: <a
                                 href="mailto:fuelfindermx@outlook.com">fuelfindermx@outlook.com</a>
@@ -89,7 +94,7 @@
                         <li class="custom-text text-left"> <i class="fa-brands fa-instagram"></i> Instagram: <a
                                 href="https://www.instagram.com/fuelfindermx/">FuelFinderMX</a>
                         </li>
-                        <li class="custom-text text-left"><i class="fa-brands fa-whatsapp"></i> Whatsapp Business: <a
+                        <li class="custom-text text-left"><i class="fa-brands fa-whatsapp"></i> WhatsApp Business: <a
                                 href="https://wa.me/526145520929">FuelFinderMX</a>
                         </li>
                     </ul>
