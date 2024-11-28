@@ -16,28 +16,8 @@
 <body>
 
     <!-- Barra de navegación principal -->
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <a class="navbar-brand" href="#">FuelFinderMX</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" style="color: rgb(0, 0, 0);" href="Inicio">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: rgb(0, 0, 0);" href="Mapa">Mapa</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: rgb(0, 0, 0);" href="Perfil">Perfil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: rgb(0, 0, 0);" href="IniciarSesion">Iniciar sesion</a>
-                </li>
-            </ul>
-        </div>
+    <nav>
+        {% include "navbar.html" %}
     </nav>
 
     <!--Formulario para registrar la informacion de cuenta-->

@@ -7,7 +7,7 @@ def obtener_datos_usuario(user_id):
     try:
         with connection.cursor() as cursor:
             query_user = """
-                SELECT Nombre, Apellido, Email, FechaCreacion
+                SELECT Nombre, Apellido, Email
                 FROM Usuarios
                 WHERE UsuarioID = ?
             """

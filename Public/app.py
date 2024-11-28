@@ -195,18 +195,18 @@ def iniciar_sesion():
 
         try:
             # Consultar la contraseña almacenada en la base de datos
-            cursor.execute("SELECT contraseña FROM usuarios WHERE email = ?", (email,))
+            cursor.execute("SELECT UsuarioID, contraseña FROM usuarios WHERE email = ?", (email,))
             result = cursor.fetchone()
 
             if result:
-                stored_password_hash = result[0]
+                user_id, stored_password_hash = result
 
                 # Verificar contraseña
                 if bcrypt.checkpw(password.encode("utf-8"), stored_password_hash.encode("utf-8")):
-                    session["user_id"] = email  # Guardar sesión
+                    session["user"] = user_id #Se guarda la sesion
                     flash("Inicio de sesión exitoso", "success")
                     print('si hubo conexion papu')
-                    return redirect(url_for("perfil"))  # Redirige al perfil
+                    return redirect(url_for("inicio"))  # Redirige al perfil
                 else:
                     flash("Contraseña incorrecta", "danger")
                     print('mamaste papu sin contra')
@@ -224,6 +224,12 @@ def iniciar_sesion():
 
     # Si el método es GET, renderiza la página de inicio de sesión
     return render_template("IniciarSesion.html")
+
+@app.route("/CerrarSesion")
+def cerrar_sesion():
+    session.pop('user', None)
+    flash('Sesion cerrada exitosamente', 'success')
+    return redirect(url_for('inicio'))
 
 
 
@@ -290,7 +296,7 @@ def create_account():
 
         # Si la cuenta se creó exitosamente, redirigir a la página de éxito
         if resultado == 200:
-            return redirect(url_for("success"))
+            return redirect(url_for("inicio"))
 
         # Si hubo un error, mostrar el mensaje de error
         flash(resultado, "danger")
@@ -320,33 +326,32 @@ def Mod_Datos():
 # funcion para obtener datos de la base de datos para perfil
 @app.route("/Perfil")
 def perfil():
-    # Verifica si hay una sesión activa
-    if "user_id" not in session:
+# Verifica si hay una sesión activa
+    user_id = session.get("user")
+    if not user_id:
         flash("No estás logueado", "danger")
-        return redirect(
-            url_for("iniciar_sesion")
-        )  # Redirige a la página de inicio de sesión
-
-    user_id = session["user_id"]
+        return redirect(url_for("iniciar_sesion"))
 
     try:
-        # Obtener los datos del usuario y los vehículos
+        user_id = int(user_id)  # Asegúrate de que sea un entero
+    except ValueError:
+        flash("El ID del usuario en la sesión no es válido.", "danger")
+        return redirect(url_for("iniciar_sesion"))
+
+    # Obtener los datos del usuario y los vehículos
+    try:
         user_data = obtener_datos_usuario(user_id)
-        if user_data is None:
+        if not user_data:
             flash("Usuario no encontrado", "danger")
-            return redirect(
-                url_for("inicio")
-            )  # Redirige a la página principal si no se encuentra el usuario
+            return redirect(url_for("inicio"))
 
-        vehicle_data = obtener_datos_vehiculos(user_id)
-
+        
     except Exception as e:
-        flash(f"Ocurrió un error al cargar tu perfil: {e}", "danger")
-        return redirect(url_for("inicio"))  # Redirige en caso de error
+        flash("Ocurrió un error al cargar tu perfil.", "danger")
+        app.logger.error(f"Error al cargar perfil: {e}")
+        return redirect(url_for("inicio"))
 
-    # Renderiza el HTML con los datos obtenidos
-    return render_template("Perfil.html", user=user_data, vehicles=vehicle_data)
-
+    return render_template("Perfil.html", user=user_data)
 
 @app.route("/Reporte")
 def Reporte():
