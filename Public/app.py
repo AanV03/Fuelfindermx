@@ -17,7 +17,6 @@ from models.Perfil_utils import (
 from models.Registro_utils import (
     registrar_usuario,
 )  # Importar la función para registrar usuarios
-from models.Email_utils import enviar_correo
 from models.Verificacion_utils import verificar_correo
 from models.NewContraseña_utils import nueva_contraseña
 import xml.etree.ElementTree as ET
@@ -28,7 +27,6 @@ from conexion import obtener_conexion
 
 app = Flask(__name__)
 mail = Mail(app)
-app.secret_key = "tu_secreto"
 
 
 @app.route("/")
@@ -227,18 +225,28 @@ def iniciar_sesion():
     # Si el método es GET, renderiza la página de inicio de sesión
     return render_template("IniciarSesion.html")
 
+
 @app.route("/CerrarSesion")
 def cerrar_sesion():
     session.pop('user', None)
     flash('Sesion cerrada exitosamente', 'success')
     return redirect(url_for('inicio'))
 
+#from flask_mysqldb import MySQL
+
+app.secret_key='hello'
+app.config['SECRET_KEY'] = 'hello'
+app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'fuelfindermx@gmail.com'  # Cambia por tu correo
+app.config['MAIL_PASSWORD'] = 'hjvf gqca laih svsm'  # Cambia por tu contraseña
 
 @app.route('/send_email', methods=['GET'])
-def send_mail():
+def send_email(email):
     msg_title='prueba de correo'
     sender = 'noreply@app.com'
-    msg = Message(msg_title,sender=sender,recipients=['aaronavarah@gmail.com'])
+    msg = Message(msg_title,sender=sender,recipients=['fuelfindermx@gmail.com'])
     msg_body = 'Este es el cuerpo del mensaje'
     data = {
         'app_name':'Nombre de la aplicación que envia el email',
@@ -264,12 +272,16 @@ def recuperar_contrasena():
         # Verificar si el correo existe en la base de datos
         if verificar_correo(email):
             # Enviar el correo si el usuario existe
-            if enviar_correo(email):
+            if send_email(email):
+                print('a wiwi')
                 return jsonify({'success': True, 'message': 'Correo enviado exitosamente.'})
             else:
+                print('pipipi')
                 return jsonify({'success': False, 'message': 'Error al enviar el correo.'}), 500
         else:
+            print('pipi')
             return jsonify({'success': False, 'message': 'El correo no está registrado.'}), 404
+            
     
     # Si es GET, muestra el formulario
     return render_template('ConfirmarEmail.html')

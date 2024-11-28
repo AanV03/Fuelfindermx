@@ -1,4 +1,3 @@
-
 // Función para cambiar el tipo de contraseña y el icono de visibilidad
 function togglePasswordVisibility(inputId, iconId) {
     const passwordField = document.getElementById(inputId);
