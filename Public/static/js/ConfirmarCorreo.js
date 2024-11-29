@@ -6,73 +6,61 @@ const confirmEmailError = document.getElementById("confirmEmailError");
 
 // Validación personalizada al enviar el formulario
 form.addEventListener("submit", function (e) {
-    e.preventDefault(); // Prevenir envío tradicional
+    e.preventDefault(); // Prevenir el envío tradicional del formulario
 
-    let allValid = true;
+    // Validar ambos correos y su coincidencia
+    const isEmailValid = validateEmail(emailField, emailError);
+    const isConfirmEmailValid = validateEmail(confirmEmailField, confirmEmailError);
+    const isEmailsMatching = compareEmails();
 
-    // Validar formato del correo principal
-    validateEmail(emailField, "emailError");
-    if (emailField.classList.contains("is-invalid")) {
-        allValid = false;
+    // Si todo es válido, continuar con el flujo
+    if (isEmailValid && isConfirmEmailValid && isEmailsMatching) {
+        alert("¡Formulario enviado correctamente!");
+        form.submit(); // Envía el formulario al servidor
+    } else {
+        alert("Por favor, verifica los errores en el formulario.");
     }
-
-    // Validar formato del correo de confirmación
-    validateEmail(confirmEmailField, "confirmEmailError");
-    if (confirmEmailField.classList.contains("is-invalid")) {
-        allValid = false;
-    }
-
-    // Verificar que los correos coincidan
-    compareEmails();
-    if (confirmEmailField.classList.contains("is-invalid")) {
-        allValid = false;
-    }
-
-    if (!allValid) {
-        alert("Por favor, verifique los errores en los campos.");
-        return;
-    }
-
-    // Si todo es correcto, continuar
-    alert("¡Se registró correctamente!");
-    window.location.href = "NuevaContraseña";
 });
 
-// Validación de formato del correo electrónico
+// Validación en tiempo real para los campos de correo
 emailField.addEventListener("input", () => {
-    validateEmail(emailField, "emailError");
-    compareEmails(); // Verificar coincidencia en tiempo real
+    validateEmail(emailField, emailError);
+    compareEmails(); // Revalida la coincidencia
 });
 
 confirmEmailField.addEventListener("input", () => {
-    validateEmail(confirmEmailField, "confirmEmailError");
-    compareEmails(); // Verificar coincidencia en tiempo real
+    validateEmail(confirmEmailField, confirmEmailError);
+    compareEmails(); // Revalida la coincidencia
 });
 
-// Función para validar correos
-function validateEmail(field, errorId) {
+// Función para validar formato del correo electrónico
+function validateEmail(field, errorField) {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const errorMessage = document.getElementById(errorId);
 
     if (!field.value.trim()) {
-        errorMessage.textContent = "Este campo es obligatorio.";
+        errorField.textContent = "Este campo es obligatorio.";
         field.classList.add("is-invalid");
+        return false;
     } else if (!emailPattern.test(field.value)) {
-        errorMessage.textContent = "Ingrese un correo válido (ejemplo@dominio.com).";
+        errorField.textContent = "Ingrese un correo válido (ejemplo@dominio.com).";
         field.classList.add("is-invalid");
+        return false;
     } else {
-        errorMessage.textContent = "";
+        errorField.textContent = "";
         field.classList.remove("is-invalid");
+        return true;
     }
 }
 
-// Función para comparar los correos
+// Función para comparar correos electrónicos
 function compareEmails() {
     if (emailField.value.trim() === confirmEmailField.value.trim()) {
         confirmEmailError.textContent = "";
         confirmEmailField.classList.remove("is-invalid");
+        return true;
     } else {
         confirmEmailError.textContent = "Los correos electrónicos no coinciden.";
         confirmEmailField.classList.add("is-invalid");
+        return false;
     }
 }

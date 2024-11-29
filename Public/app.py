@@ -246,7 +246,7 @@ app.config['MAIL_PASSWORD'] = 'hjvf gqca laih svsm'  # Cambia por tu contraseña
 def send_email(email):
     msg_title='prueba de correo'
     sender = 'noreply@app.com'
-    msg = Message(msg_title,sender=sender,recipients=['fuelfindermx@gmail.com'])
+    msg = Message(msg_title, sender=sender, recipients=[email])
     msg_body = 'Este es el cuerpo del mensaje'
     data = {
         'app_name':'Nombre de la aplicación que envia el email',
