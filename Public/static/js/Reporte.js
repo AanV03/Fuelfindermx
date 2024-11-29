@@ -1,5 +1,3 @@
-/* Script de Reporte */
-
 document.getElementById("reportForm").addEventListener("submit", function (e) {
     e.preventDefault(); // Prevenir que el formulario se envíe tradicionalmente
 

@@ -7,7 +7,7 @@
     <title>FuelFinderMX - Crear Cuenta</title>
     <link rel="icon" href="{{ url_for('static', filename='images/logo 16x16.ico') }}" sizes="16x16" type="image/x-icon">
     <link rel="icon" href="{{ url_for('static', filename='images/logo 32x32.ico') }}" sizes="32x32" type="image/x-icon">
-    <link rel="icon" href="{{ url_for('static', filename='images/logo 64x64.ico') }}" sizes="64x64" type="image/x-icon">    
+    <link rel="icon" href="{{ url_for('static', filename='images/logo 64x64.ico') }}" sizes="64x64" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -24,31 +24,31 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <!-- Columna 1: Datos personales -->
-            <div class="col-md-5 p-3 border rounded shadow datos-custom-height" style=" margin-right: 20px">
+            <div class="col-12 col-md-5 p-3 border rounded shadow datos-custom-height mx-auto mx-md-0 mb-4 mb-md-0"
+                style="margin-right: 20px;">
                 <h2 class="text-center">Modificar datos personales</h2>
-                <br>
                 <form action="/process_personal_data" method="POST">
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="nombre">Nombre</label>
                         <input type="text" class="form-control" id="nombre" name="nombre"
                             placeholder="Ingrese su nombre">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="apellido">Apellido</label>
                         <input type="text" class="form-control" id="apellido" name="apellido"
                             placeholder="Ingrese su apellido">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="email">Correo electrónico</label>
                         <input type="email" class="form-control" id="email" name="email"
                             placeholder="Ingrese su correo electrónico">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="contraseña">Contraseña</label>
                         <input type="password" class="form-control" id="contraseña" name="contraseña"
                             placeholder="Ingrese su contraseña">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="confirmar_contraseña">Confirmar contraseña</label>
                         <input type="password" class="form-control" id="confirmar_contraseña"
                             name="confirmar_contraseña" placeholder="Confirme su contraseña">
@@ -56,39 +56,40 @@
                 </form>
             </div>
 
+
             <!-- Columna 2: Datos del vehículo -->
-            <div class="col-md-5 p-3 border rounded shadow datos-custom-height">
+            <div class="col-12 col-md-5 p-3 border rounded shadow datos-custom-height mx-auto mx-md-0">
                 <h2 class="text-center">Modificar datos del vehículo</h2>
-                <br>
                 <form action="/process_vehicle_data" method="POST">
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="marca">Marca</label>
                         <input type="text" class="form-control" id="marca" name="marca"
-                            placeholder="Ingrese la marca de su vehiculo">
+                            placeholder="Ingrese la marca de su vehículo">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="modelo">Modelo</label>
                         <input type="text" class="form-control" id="modelo" name="modelo"
-                            placeholder="Ingrese el modelo de su vehiculo">
+                            placeholder="Ingrese el modelo de su vehículo">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="año">Año</label>
                         <input type="text" class="form-control" id="año" name="año"
-                            placeholder="Ingrese el año de su vehiculo">
+                            placeholder="Ingrese el año de su vehículo">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="capacidad_tanque">Capacidad del tanque</label>
                         <input type="text" class="form-control" id="capacidad_tanque" name="capacidad_tanque"
-                            placeholder="Ingrese la capacidad del tanque de su vehiculo">
+                            placeholder="Ingrese la capacidad del tanque de su vehículo">
                     </div>
                 </form>
             </div>
+
         </div>
 
         <!-- Botón centrado debajo de los formularios -->
         <div class="row mt-4">
             <div class="col text-center">
-                <a href="Perfil.html" class="btn btn-primary" style="width: 200px;">Guardar</a>
+                <a type="submit" href="Perfil" class="btn btn-primary" style="width: 200px;">Guardar</a>
             </div>
         </div>
     </div>

@@ -7,7 +7,7 @@
     <title>FuelFinderMX - Perfil de usuario</title>
     <link rel="icon" href="{{ url_for('static', filename='images/logo 16x16.ico') }}" sizes="16x16" type="image/x-icon">
     <link rel="icon" href="{{ url_for('static', filename='images/logo 32x32.ico') }}" sizes="32x32" type="image/x-icon">
-    <link rel="icon" href="{{ url_for('static', filename='images/logo 64x64.ico') }}" sizes="64x64" type="image/x-icon">    
+    <link rel="icon" href="{{ url_for('static', filename='images/logo 64x64.ico') }}" sizes="64x64" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -48,29 +48,25 @@
             </div>
 
             <!-- Columna para los datos del vehículo -->
-            <div class="col-md-6">
+            <div class="col-12 col-md-6 mb-4">
                 <div class="p-3 border rounded shadow h-100 perfil-custom-height">
                     <h2 class="perfil-section-title text-center">Datos de vehículo</h2>
                     <hr class="perfil-divider">
-                    <div class="row mt-5">
+                    <div class="row mt-4">
                         <!-- Columna izquierda: Información del vehículo -->
-                        <div class="col-md-6">
-                            <h5 class="perfil-subsection-title" style="padding-bottom: 5px;">Datos del Vehículo</h5>
+                        <div class="col-12 col-md-6 mb-3 mb-md-0">
+                            <h5 class="perfil-subsection-title pb-2">Datos del Vehículo</h5>
                             <p class="perfil-P">Marca:</p>
-                            
+                            <br>
+                            <p class="perfil-P">Modelo:</p>
+                            <br>
+                            <p class="perfil-P">Capacidad del tanque:</p>
+                            <br>
                         </div>
-                        <!-- Columna derecha: Imagen y capacidad del tanque -->
-                        <div class="col-md-6 d-flex flex-column align-items-center">
-                            <!-- Imagen del vehículo -->
-                            <br><br>
-                            <img src="../imagenes/carro.png" class="img-fluid mb-auto" alt="Vehículo"
-                                style="max-width: 90%; height: auto;">
-
-                            <!-- Capacidad del tanque, alineado con el subtítulo Año -->
-                            <div>
-                                <p class="perfil-P">Capacidad del tanque:</p>
-        
-                            </div>
+                        <!-- Columna derecha: Imagen -->
+                        <div class="col-12 col-md-6 d-flex flex-column align-items-center">
+                            <img src="{{ url_for('static', filename='images/carro.png') }}" class="img-fluid mb-3"
+                                alt="Vehículo" style="max-width: 100%; height: auto;">
                         </div>
                     </div>
                 </div>
@@ -80,7 +76,7 @@
 
     <!-- Botón centrado debajo de ambas secciones -->
     <div class="text-center mt-4">
-        <a href="ModDatos.html" class="btn btn-primary">Modificar datos</a>
+        <a href="ModDatos" class="btn btn-primary">Modificar datos</a>
     </div>
     </div>
 

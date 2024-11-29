@@ -232,7 +232,6 @@ def cerrar_sesion():
     flash('Sesion cerrada exitosamente', 'success')
     return redirect(url_for('inicio'))
 
-#from flask_mysqldb import MySQL
 
 app.secret_key='hello'
 app.config['SECRET_KEY'] = 'hello'
