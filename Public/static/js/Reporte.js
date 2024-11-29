@@ -79,20 +79,6 @@ emailField.addEventListener("input", () => {
     }
 });
 
-// Validación del teléfono
-telefonoField.addEventListener("input", () => {
-    const telefonoPattern = /^[0-9]{10}$/;
-    const errorMessage = document.getElementById("telefonoError");
-
-    if (!telefonoPattern.test(telefonoField.value)) {
-        errorMessage.textContent = "El teléfono debe tener 10 dígitos.";
-        telefonoField.classList.add("is-invalid");
-    } else {
-        errorMessage.textContent = "";
-        telefonoField.classList.remove("is-invalid");
-    }
-});
-
 // Validación de la descripción del error
 errorField.addEventListener("input", () => {
     const errorMessage = document.getElementById("errorError");
